@@ -115,7 +115,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 /* ══════════════════════════════════════════════════
    LEVEL UP POPUP
 ══════════════════════════════════════════════════ */
-.levelup-overlay{position:absolute;inset:0;background:rgba(6,10,13,0.95);z-index:100;display:none;align-items:center;justify-content:center;flex-direction:column;gap:0;backdrop-filter:blur(16px);}
+.levelup-overlay{position:absolute;inset:0;background:rgba(6,10,13,0.98);z-index:100;display:none;align-items:center;justify-content:center;flex-direction:column;gap:0;}
 .levelup-overlay.show{display:flex;animation:luFadeIn 0.4s ease;}
 @keyframes luFadeIn{from{opacity:0;}to{opacity:1;}}
 .lu-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
@@ -145,7 +145,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
    ANIMATED SCORE RING — ALIVE PULSE
 ══════════════════════════════════════════════════ */
 .ring-fill{fill:none;stroke:var(--accent);stroke-width:9;stroke-linecap:round;stroke-dasharray:276;stroke-dashoffset:276;transition:stroke-dashoffset 2s cubic-bezier(0.25,0.46,0.45,0.94);filter:drop-shadow(0 0 8px rgba(100,255,180,0.7));}
-.ring-glow{fill:none;stroke:rgba(100,255,180,0.18);stroke-width:14;stroke-linecap:round;stroke-dasharray:276;stroke-dashoffset:276;filter:blur(3px);}
+.ring-glow{fill:none;stroke:rgba(100,255,180,0.1);stroke-width:12;stroke-linecap:round;stroke-dasharray:276;stroke-dashoffset:276;}
 
 /* Ambient pulse on the ring after it finishes drawing */
 @keyframes ringPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(100,255,180,0.5));}50%{filter:drop-shadow(0 0 14px rgba(100,255,180,0.9));}}
@@ -339,8 +339,8 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .type-card.selected .type-check{background:var(--accent);border-color:var(--accent);color:var(--bg);}
 
 /* Split section */
-.split-sec{padding:0 20px 18px;overflow:hidden;max-height:0;opacity:0;transition:max-height 0.5s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.4s ease;}
-.split-sec.vis{max-height:600px;opacity:1;}
+.split-sec{padding:0 20px 18px;overflow:visible;max-height:0;opacity:0;transition:max-height 0.6s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.4s ease;}
+.split-sec.vis{max-height:1400px;opacity:1;overflow:visible;}
 .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px;}
 .split-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:14px 12px;cursor:pointer;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden;}
 .split-card:active{transform:scale(0.95);}
@@ -358,7 +358,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 
 /* Level */
 .level-sec{padding:0 20px 18px;max-height:0;opacity:0;overflow:hidden;transition:max-height 0.5s ease,opacity 0.4s ease;}
-.level-sec.vis{max-height:200px;opacity:1;}
+.level-sec.vis{max-height:300px;opacity:1;overflow:visible;}
 .level-row{display:flex;gap:8px;}
 .lvl-btn{flex:1;padding:13px 8px;text-align:center;background:var(--surface);border:1.5px solid var(--border);border-radius:15px;cursor:pointer;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);}
 .lvl-btn:active{transform:scale(0.95);}
@@ -370,7 +370,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 
 /* Gen button */
 .gen-sec{padding:0 20px 18px;max-height:0;opacity:0;overflow:hidden;transition:max-height 0.5s ease,opacity 0.4s ease;}
-.gen-sec.vis{max-height:200px;opacity:1;}
+.gen-sec.vis{max-height:300px;opacity:1;overflow:visible;}
 .sum-row{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;gap:7px;}
 .sum-chip{font-size:10px;font-family:'Syne',sans-serif;font-weight:700;padding:3px 10px;border-radius:100px;}
 .sum-a{background:rgba(100,255,180,0.1);border:1px solid rgba(100,255,180,0.2);color:var(--accent);}
@@ -514,7 +514,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 /* ════════════════════════════════════
    LOG FOOD MODAL
 ════════════════════════════════════ */
-.modal{position:absolute;inset:0;background:rgba(6,10,13,0.94);z-index:80;display:none;flex-direction:column;border-radius:0;overflow:hidden;backdrop-filter:blur(10px);}
+.modal{position:absolute;inset:0;background:rgba(6,10,13,0.98);z-index:80;display:none;flex-direction:column;border-radius:0;overflow:hidden;}
 .modal.show{display:flex;animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
 @keyframes modalIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;flex-shrink:0;}
@@ -577,7 +577,113 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .an-spinner{width:34px;height:34px;border-radius:50%;border:2.5px solid rgba(100,255,180,0.1);border-top-color:var(--accent);animation:spin 0.75s linear infinite;}
 .an-txt{font-size:12px;color:var(--text-muted);font-family:'Syne',sans-serif;letter-spacing:0.08em;text-align:center;}
 
-/* ── TOAST ── */
+/* ════════════════════════════════════
+   ONBOARDING SCREEN
+════════════════════════════════════ */
+.ob-screen{position:absolute;inset:0;background:var(--bg);z-index:300;display:flex;flex-direction:column;overflow-y:auto;}
+.ob-screen::-webkit-scrollbar{display:none;}
+.ob-step{display:none;flex-direction:column;flex:1;padding:0 0 32px;}
+.ob-step.active{display:flex;animation:screenIn 0.35s cubic-bezier(0.25,0.46,0.45,0.94);}
+.ob-hero{padding:48px 28px 24px;text-align:center;}
+.ob-logo{font-family:'Instrument Serif',serif;font-size:52px;color:var(--accent);margin-bottom:8px;display:block;}
+.ob-headline{font-family:'Instrument Serif',serif;font-size:32px;line-height:1.15;margin-bottom:10px;}
+.ob-headline em{font-style:italic;color:var(--accent);}
+.ob-sub{font-size:14px;color:var(--text-dim);line-height:1.7;padding:0 8px;}
+.ob-body{padding:0 24px;flex:1;}
+.ob-label{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;margin-top:20px;display:block;}
+.ob-input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:15px 18px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+.ob-input:focus{border-color:rgba(100,255,180,0.4);}
+.ob-input::placeholder{color:var(--text-muted);}
+.ob-options{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.ob-option{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:14px 18px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:14px;}
+.ob-option:active{transform:scale(0.98);}
+.ob-option.selected{border-color:var(--accent);background:rgba(100,255,180,0.06);}
+.ob-opt-icon{font-size:24px;flex-shrink:0;}
+.ob-opt-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;transition:color 0.2s;}
+.ob-option.selected .ob-opt-name{color:var(--accent);}
+.ob-opt-desc{font-size:11px;color:var(--text-muted);}
+.ob-option-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.ob-option-sm{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:14px 10px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.ob-option-sm:active{transform:scale(0.95);}
+.ob-option-sm.selected{border-color:var(--accent);background:rgba(100,255,180,0.06);}
+.ob-option-sm-icon{font-size:26px;margin-bottom:6px;display:block;}
+.ob-option-sm-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text);transition:color 0.2s;}
+.ob-option-sm.selected .ob-option-sm-name{color:var(--accent);}
+.ob-footer{padding:20px 24px 0;display:flex;flex-direction:column;gap:10px;}
+.ob-btn{width:100%;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.ob-btn:active{transform:scale(0.97);}
+.ob-btn:disabled{background:rgba(100,255,180,0.2);color:rgba(100,255,180,0.4);cursor:default;}
+.ob-skip{background:none;border:none;color:var(--text-muted);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;text-align:center;padding:4px;}
+.ob-dots{display:flex;justify-content:center;gap:6px;padding:16px 0 0;}
+.ob-dot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:all 0.3s;}
+.ob-dot.active{background:var(--accent);width:20px;border-radius:3px;}
+.ob-progress{height:2px;background:var(--border);margin:0 24px;border-radius:2px;overflow:hidden;}
+.ob-progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.4s ease;}
+/* Founder story card in onboarding */
+.ob-founder-card{background:linear-gradient(135deg,rgba(100,255,180,0.08),rgba(100,255,180,0.02));border:1px solid rgba(100,255,180,0.15);border-radius:18px;padding:18px;margin-top:16px;}
+.ob-founder-tag{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.ob-founder-txt{font-size:13px;line-height:1.75;color:rgba(232,240,254,0.72);}
+
+/* ════════════════════════════════════
+   COMMUNITY FEED SCREEN
+════════════════════════════════════ */
+.community-header{padding:16px 20px 0;}
+.comm-title{font-family:'Instrument Serif',serif;font-size:30px;margin-bottom:2px;}
+.comm-title em{font-style:italic;color:var(--accent);}
+.comm-sub{font-size:11px;color:var(--text-muted);font-family:'Syne',sans-serif;margin-bottom:14px;}
+/* Post composer */
+.post-composer{margin:0 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:14px 16px;}
+.pc-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;}
+.pc-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),rgba(100,255,180,0.3));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;font-weight:800;color:var(--bg);font-family:'Syne',sans-serif;}
+.pc-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;resize:none;min-height:42px;max-height:100px;-webkit-appearance:none;transition:border-color 0.2s;}
+.pc-input:focus{border-color:rgba(100,255,180,0.3);}
+.pc-input::placeholder{color:var(--text-muted);}
+.pc-actions{display:flex;justify-content:space-between;align-items:center;}
+.pc-tags{display:flex;gap:6px;}
+.pc-tag{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:5px 10px;font-size:10px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+.pc-tag.active{background:rgba(100,255,180,0.1);border-color:rgba(100,255,180,0.25);color:var(--accent);}
+.pc-tag:active{transform:scale(0.94);}
+.pc-post-btn{background:var(--accent);color:var(--bg);border:none;padding:8px 18px;border-radius:100px;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;cursor:pointer;transition:all 0.2s;}
+.pc-post-btn:active{transform:scale(0.95);}
+/* Feed filters */
+.feed-filters{display:flex;gap:8px;padding:0 20px 12px;overflow-x:auto;}
+.feed-filters::-webkit-scrollbar{display:none;}
+.ff-btn{flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:11px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.ff-btn.active{background:rgba(100,255,180,0.1);border-color:rgba(100,255,180,0.25);color:var(--accent);}
+.ff-btn:active{transform:scale(0.95);}
+/* Post cards */
+.feed{padding:0 20px;display:flex;flex-direction:column;gap:12px;}
+.post-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:16px;transition:all 0.2s;}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.post-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--bg);font-family:'Syne',sans-serif;flex-shrink:0;}
+.post-user-info{flex:1;}
+.post-username{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px;}
+.post-meta{font-size:10px;color:var(--text-muted);}
+.post-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:0.06em;}
+.post-body{font-size:13px;line-height:1.7;color:rgba(232,240,254,0.82);margin-bottom:12px;}
+/* Post stats card */
+.post-stats{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;}
+.post-stats::-webkit-scrollbar{display:none;}
+.pstat{flex-shrink:0;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 12px;text-align:center;min-width:64px;}
+.pstat-val{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;margin-bottom:1px;}
+.pstat-lbl{font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
+/* Post actions */
+.post-actions{display:flex;gap:6px;align-items:center;}
+.react-btn{display:flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:7px 12px;cursor:pointer;transition:all 0.2s;font-size:13px;}
+.react-btn:active{transform:scale(0.93);}
+.react-btn.reacted{background:rgba(100,255,180,0.1);border-color:rgba(100,255,180,0.25);}
+.react-count{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text-dim);}
+.react-btn.reacted .react-count{color:var(--accent);}
+.comment-btn{display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;padding:7px 8px;transition:all 0.2s;}
+.comment-btn:active{transform:scale(0.93);}
+.share-post-btn{margin-left:auto;background:none;border:none;color:var(--text-muted);font-size:16px;cursor:pointer;padding:7px;}
+/* Streak / challenge win banner */
+.post-win-banner{background:linear-gradient(135deg,rgba(100,255,180,0.1),rgba(100,255,180,0.04));border:1px solid rgba(100,255,180,0.2);border-radius:12px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.pwb-icon{font-size:20px;}
+.pwb-txt{font-size:12px;color:rgba(232,240,254,0.8);line-height:1.5;}
+.pwb-txt strong{color:var(--accent);}
+/* Online indicator */
+.online-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s infinite;flex-shrink:0;}
 .toast{position:absolute;bottom:76px;left:18px;right:18px;background:var(--surface2);border:1px solid rgba(100,255,180,0.18);border-radius:15px;padding:11px 14px;z-index:100;display:flex;gap:9px;align-items:flex-start;transform:translateY(14px);opacity:0;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
 .toast-lbl{font-size:8px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2px;}
@@ -638,7 +744,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .ch-badge-tag{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.06em;padding:3px 8px;border-radius:100px;}
 .ch-cnt{font-size:9px;color:var(--text-muted);font-family:'Syne',sans-serif;}
 /* Challenge modal */
-.ch-modal{position:absolute;inset:0;background:rgba(6,10,13,0.95);z-index:80;display:none;flex-direction:column;border-radius:0;overflow:hidden;backdrop-filter:blur(12px);}
+.ch-modal{position:absolute;inset:0;background:rgba(6,10,13,0.98);z-index:80;display:none;flex-direction:column;border-radius:0;overflow:hidden;}
 .ch-modal.show{display:flex;animation:riseIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
 @keyframes riseIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .ch-mhdr{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;flex-shrink:0;}
@@ -673,7 +779,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .b-check{position:absolute;top:7px;right:7px;width:13px;height:13px;border-radius:50%;background:var(--gold);display:none;align-items:center;justify-content:center;font-size:7px;color:var(--bg);}
 .badge-card.earned .b-check{display:flex;}
 /* Badge unlock */
-.badge-unlock{position:absolute;inset:0;background:rgba(6,10,13,0.92);z-index:90;display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;border-radius:0;backdrop-filter:blur(12px);}
+.badge-unlock{position:absolute;inset:0;background:rgba(6,10,13,0.98);z-index:90;display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;border-radius:0;}
 .badge-unlock.show{display:flex;animation:buIn 0.4s ease;}
 @keyframes buIn{from{opacity:0;}to{opacity:1;}}
 .bu-ico{font-size:68px;animation:buBounce 0.6s cubic-bezier(0.34,1.56,0.64,1);}
@@ -745,7 +851,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .pes-sub{font-size:11px;color:var(--text-muted);line-height:1.65;margin-bottom:16px;}
 .pes-btn{background:var(--accent);color:var(--bg);border:none;padding:11px 26px;border-radius:100px;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;cursor:pointer;}
 /* Photo add modal */
-.photo-add-modal{position:absolute;inset:0;background:rgba(6,10,13,0.96);z-index:85;display:none;flex-direction:column;border-radius:0;overflow:hidden;backdrop-filter:blur(12px);}
+.photo-add-modal{position:absolute;inset:0;background:rgba(6,10,13,0.98);z-index:85;display:none;flex-direction:column;border-radius:0;overflow:hidden;}
 .photo-add-modal.show{display:flex;animation:riseIn 0.35s ease;}
 .pam-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;flex-shrink:0;}
 .pam-title{font-family:'Instrument Serif',serif;font-size:22px;}
@@ -768,13 +874,13 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 /* Sleep */
 .sleep-ring-card{margin:0 20px 12px;background:linear-gradient(135deg,var(--surface),rgba(116,185,255,0.04));border:1px solid rgba(116,185,255,0.14);border-radius:22px;padding:18px;}
 .slp-top{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
-.slp-ring{position:relative;width:96px;height:96px;flex-shrink:0;}
-.slp-svg{width:96px;height:96px;transform:rotate(-90deg);}
-.slp-bg{fill:none;stroke:rgba(116,185,255,0.07);stroke-width:9;}
-.slp-fill{fill:none;stroke:var(--blue);stroke-width:9;stroke-linecap:round;stroke-dasharray:276;stroke-dashoffset:83;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 6px rgba(116,185,255,0.4));}
-.slp-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.slp-hrs{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;line-height:1;}
-.slp-lbl{font-size:7px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-family:'Syne',sans-serif;margin-top:1px;}
+.slp-ring{position:relative;width:120px;height:120px;flex-shrink:0;}
+.slp-svg{width:120px;height:120px;transform:rotate(-90deg);}
+.slp-bg{fill:none;stroke:rgba(116,185,255,0.07);stroke-width:8;}
+.slp-fill{fill:none;stroke:var(--blue);stroke-width:8;stroke-linecap:round;stroke-dasharray:276;stroke-dashoffset:83;transition:stroke-dashoffset 1.5s ease;filter:drop-shadow(0 0 6px rgba(116,185,255,0.4));}
+.slp-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+.slp-hrs{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;line-height:1;color:var(--text);}
+.slp-lbl{font-size:7px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-family:'Syne',sans-serif;}
 .slp-stages{flex:1;display:flex;flex-direction:column;gap:7px;}
 .slp-stage{display:flex;align-items:center;gap:7px;}
 .slp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
@@ -817,7 +923,139 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
   <!-- Screens -->
   <div class="screens">
 
-    <!-- ══════════════════ HOME ══════════════════ -->
+    <!-- ══════════════════ COMMUNITY ══════════════════ -->
+    <div class="screen" id="s-community">
+      <div class="community-header">
+        <div class="comm-title">Rise <em>Together</em></div>
+        <div class="comm-sub">Share wins · React · Inspire the community</div>
+      </div>
+
+      <!-- Composer -->
+      <div class="post-composer">
+        <div class="pc-top">
+          <div class="pc-avatar" id="communityAvatar">R</div>
+          <textarea class="pc-input" id="postInput" placeholder="Share a win, a breakthrough, a milestone..." rows="2" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+        </div>
+        <div class="pc-actions">
+          <div class="pc-tags">
+            <div class="pc-tag active" id="ptag-win" onclick="selectPostTag(this,'win')">🏆 Win</div>
+            <div class="pc-tag" id="ptag-workout" onclick="selectPostTag(this,'workout')">💪 Workout</div>
+            <div class="pc-tag" id="ptag-nutrition" onclick="selectPostTag(this,'nutrition')">🍎 Nutrition</div>
+            <div class="pc-tag" id="ptag-mindset" onclick="selectPostTag(this,'mindset')">🧘 Mindset</div>
+          </div>
+          <button class="pc-post-btn" onclick="submitPost()">Post</button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="feed-filters">
+        <div class="ff-btn active" onclick="filterFeed(this,'all')">🔥 All</div>
+        <div class="ff-btn" onclick="filterFeed(this,'wins')">🏆 Wins</div>
+        <div class="ff-btn" onclick="filterFeed(this,'workouts')">💪 Workouts</div>
+        <div class="ff-btn" onclick="filterFeed(this,'challenges')">⚡ Challenges</div>
+        <div class="ff-btn" onclick="filterFeed(this,'nutrition')">🍎 Nutrition</div>
+      </div>
+
+      <!-- Feed -->
+      <div class="feed" id="communityFeed">
+
+        <!-- Post 1 — Challenge win -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar" style="background:linear-gradient(135deg,#ff9f43,#ff6b6b)">M</div>
+            <div class="post-user-info">
+              <div class="post-username">Marcus R. <span style="color:var(--accent);font-size:10px">⚡ Level 9</span></div>
+              <div class="post-meta">2 hours ago · 🔥 28-day streak</div>
+            </div>
+            <span class="post-badge" style="background:rgba(100,255,180,0.1);color:var(--accent)">30-Day Rise</span>
+          </div>
+          <div class="post-win-banner">
+            <div class="pwb-icon">🏆</div>
+            <div class="pwb-txt">Just hit <strong>Day 28</strong> of the 30-Day Rise Challenge. Two days left. I'm not stopping for anything.</div>
+          </div>
+          <div class="post-body">Started this at 185lbs, sitting at 172 now. Down 13lbs in 28 days without losing strength — actually hit a new bench PR this week. The nutrition + workout combo in Risn is legit.</div>
+          <div class="post-stats">
+            <div class="pstat"><div class="pstat-val" style="color:var(--red)">-13</div><div class="pstat-lbl">lbs lost</div></div>
+            <div class="pstat"><div class="pstat-val" style="color:var(--accent)">91</div><div class="pstat-lbl">Risn Score</div></div>
+            <div class="pstat"><div class="pstat-val" style="color:var(--gold)">🔥 28</div><div class="pstat-lbl">Streak</div></div>
+          </div>
+          <div class="post-actions">
+            <div class="react-btn" onclick="toggleReact(this)">🔥 <span class="react-count">47</span></div>
+            <div class="react-btn" onclick="toggleReact(this)">💪 <span class="react-count">23</span></div>
+            <button class="comment-btn">💬 12</button>
+            <button class="share-post-btn">↗</button>
+          </div>
+        </div>
+
+        <!-- Post 2 — Workout PR -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar" style="background:linear-gradient(135deg,#74b9ff,#a29bfe)">J</div>
+            <div class="post-user-info">
+              <div class="post-username">Jamie K. <span style="color:var(--blue);font-size:10px">⚡ Level 6</span></div>
+              <div class="post-meta">5 hours ago · 🔥 14-day streak</div>
+            </div>
+            <span class="post-badge" style="background:rgba(116,185,255,0.1);color:var(--blue)">💪 PR</span>
+          </div>
+          <div class="post-body">The AI-generated Push/Pull/Legs split has completely changed my training. Hit 225lb bench for the first time EVER today. 6 weeks ago I was at 185. The progressive overload built in is 🔑</div>
+          <div class="post-stats">
+            <div class="pstat"><div class="pstat-val" style="color:var(--blue)">225</div><div class="pstat-lbl">lbs bench</div></div>
+            <div class="pstat"><div class="pstat-val" style="color:var(--accent)">+40</div><div class="pstat-lbl">lbs gained</div></div>
+            <div class="pstat"><div class="pstat-val" style="color:var(--gold)">6wk</div><div class="pstat-lbl">Timeline</div></div>
+          </div>
+          <div class="post-actions">
+            <div class="react-btn" onclick="toggleReact(this)">🔥 <span class="react-count">89</span></div>
+            <div class="react-btn" onclick="toggleReact(this)">💪 <span class="react-count">61</span></div>
+            <button class="comment-btn">💬 34</button>
+            <button class="share-post-btn">↗</button>
+          </div>
+        </div>
+
+        <!-- Post 3 — Mental health -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar" style="background:linear-gradient(135deg,#a29bfe,#fd79a8)">S</div>
+            <div class="post-user-info">
+              <div class="post-username">Sofia T. <span style="color:var(--purple);font-size:10px">⚡ Level 5</span></div>
+              <div class="post-meta">Yesterday · 🔥 21-day streak</div>
+            </div>
+            <span class="post-badge" style="background:rgba(162,155,254,0.1);color:var(--purple)">🧘 Mindset</span>
+          </div>
+          <div class="post-body">3 weeks of journaling with the AI coach every morning. I actually cried reading my own entries from week 1 vs now. The anxiety patterns the AI spotted — and how to reframe them — has genuinely changed how I think. Never expected a fitness app to do this.</div>
+          <div class="post-actions">
+            <div class="react-btn" onclick="toggleReact(this)">🔥 <span class="react-count">134</span></div>
+            <div class="react-btn" onclick="toggleReact(this)">❤️ <span class="react-count">97</span></div>
+            <button class="comment-btn">💬 58</button>
+            <button class="share-post-btn">↗</button>
+          </div>
+        </div>
+
+        <!-- Post 4 — Nutrition -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar" style="background:linear-gradient(135deg,#55efc4,#00b894)">D</div>
+            <div class="post-user-info">
+              <div class="post-username">Devon M. <span style="color:var(--accent);font-size:10px">⚡ Level 8</span></div>
+              <div class="post-meta">2 days ago · 🔥 45-day streak</div>
+            </div>
+            <span class="post-badge" style="background:rgba(100,255,180,0.1);color:var(--accent)">🍎 Nutrition</span>
+          </div>
+          <div class="post-body">7 days straight hitting my protein goal using the Founder's lean bulk protocol. The carb timing tip — loading carbs PRE workout and keeping them lower at night — is an absolute game changer. Down 2% body fat in 3 weeks while gaining strength.</div>
+          <div class="post-stats">
+            <div class="pstat"><div class="pstat-val" style="color:var(--blue)">7/7</div><div class="pstat-lbl">Protein days</div></div>
+            <div class="pstat"><div class="pstat-val" style="color:var(--red)">-2%</div><div class="pstat-lbl">Body fat</div></div>
+          </div>
+          <div class="post-actions">
+            <div class="react-btn" onclick="toggleReact(this)">🔥 <span class="react-count">52</span></div>
+            <div class="react-btn" onclick="toggleReact(this)">💪 <span class="react-count">31</span></div>
+            <button class="comment-btn">💬 19</button>
+            <button class="share-post-btn">↗</button>
+          </div>
+        </div>
+
+      </div>
+      <div style="height:20px"></div>
+    </div>
     <div class="screen active" id="s-home">
       <div class="home-hero">
         <div class="home-greeting">Welcome back</div>
@@ -1339,7 +1577,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 
   </div><!-- /screens -->
 
-  <!-- BOTTOM NAV — 5 tabs -->
+  <!-- BOTTOM NAV — 6 tabs -->
   <div class="bottom-nav" id="bottomNav">
     <div class="nav-item active" onclick="switchTab('home')" id="nav-home"><div class="nav-dot"></div><div class="nav-icon">⬡</div><div class="nav-label">Home</div></div>
     <div class="nav-item" onclick="switchTab('coach');clearCoachBadge()" id="nav-coach">
@@ -1353,6 +1591,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
     <div class="nav-item" onclick="switchTab('nutrition')" id="nav-nutrition"><div class="nav-dot"></div><div class="nav-icon">🍎</div><div class="nav-label">Nutrition</div></div>
     <div class="nav-item" onclick="switchTab('fitness')" id="nav-fitness"><div class="nav-dot"></div><div class="nav-icon">💪</div><div class="nav-label">Fitness</div></div>
     <div class="nav-item" onclick="switchTab('rise')" id="nav-rise"><div class="nav-dot"></div><div class="nav-icon">⚡</div><div class="nav-label">Rise</div></div>
+    <div class="nav-item" onclick="switchTab('community')" id="nav-community"><div class="nav-dot"></div><div class="nav-icon">👥</div><div class="nav-label">Community</div></div>
   </div>
 
   <!-- LOG FOOD MODAL -->
@@ -1462,6 +1701,124 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 
   <!-- TOAST -->
   <div class="toast" id="toast"><div style="flex:1"><div class="toast-lbl">Risn</div><div class="toast-msg" id="toastMsg"></div></div><div class="toast-x" onclick="hideToast()">×</div></div>
+
+  <!-- ONBOARDING OVERLAY -->
+  <div class="ob-screen" id="obScreen">
+    <div class="ob-progress"><div class="ob-progress-fill" id="obProgressFill" style="width:20%"></div></div>
+
+    <!-- Step 1: Welcome -->
+    <div class="ob-step active" id="ob-step-1">
+      <div class="ob-hero">
+        <span class="ob-logo">Risn</span>
+        <div class="ob-headline">Rise every<br><em>single day.</em></div>
+        <div class="ob-sub">AI-powered wellness for your mind, body, nutrition and habits — all in one place built by someone who's lived it.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-founder-card">
+          <div class="ob-founder-tag">✦ From the Founder</div>
+          <div class="ob-founder-txt">"I went from obese to sub-10% body fat. Men's Health wanted to cover my transformation. I built Risn because no app existed that handled the whole person. This is everything I know — in your pocket."</div>
+        </div>
+        <span class="ob-label">What's your name?</span>
+        <input class="ob-input" id="obName" type="text" placeholder="First name" oninput="checkObStep1()">
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        </div>
+        <button class="ob-btn" id="obBtn1" onclick="obNext(2)" disabled>Let's Rise →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Goal -->
+    <div class="ob-step" id="ob-step-2">
+      <div class="ob-hero">
+        <div class="ob-headline">What's your<br><em>main goal?</em></div>
+        <div class="ob-sub">Risn personalizes everything — your workouts, nutrition targets, and AI coaching — around what you're actually trying to achieve.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-options" id="obGoalOptions">
+          <div class="ob-option" onclick="selectObOption(this,'goal','lose-fat')"><div class="ob-opt-icon">🔥</div><div><div class="ob-opt-name">Lose Fat</div><div class="ob-opt-desc">Cut body fat while preserving muscle</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'goal','build-muscle')"><div class="ob-opt-icon">💪</div><div><div class="ob-opt-name">Build Muscle</div><div class="ob-opt-desc">Lean bulk — size with minimal fat gain</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'goal','recomp')"><div class="ob-opt-icon">⚡</div><div><div class="ob-opt-name">Body Recomp</div><div class="ob-opt-desc">Lose fat AND build muscle simultaneously</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'goal','performance')"><div class="ob-opt-icon">🏃</div><div><div class="ob-opt-name">Performance</div><div class="ob-opt-desc">Improve fitness, strength, and energy</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'goal','mental')"><div class="ob-opt-icon">🧘</div><div><div class="ob-opt-name">Mental Wellness</div><div class="ob-opt-desc">Reduce stress, anxiety, and build resilience</div></div></div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        </div>
+        <button class="ob-btn" id="obBtn2" onclick="obNext(3)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Experience -->
+    <div class="ob-step" id="ob-step-3">
+      <div class="ob-hero">
+        <div class="ob-headline">Your fitness<br><em>experience?</em></div>
+        <div class="ob-sub">This shapes the complexity of your AI-generated workouts and coaching style.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-option-grid" id="obExpOptions">
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','beginner')"><span class="ob-option-sm-icon">🌱</span><div class="ob-option-sm-name">Beginner</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">Under 1 year</div></div>
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','intermediate')"><span class="ob-option-sm-icon">🔥</span><div class="ob-option-sm-name">Intermediate</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">1–3 years</div></div>
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','advanced')"><span class="ob-option-sm-icon">⚡</span><div class="ob-option-sm-name">Advanced</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">3+ years</div></div>
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','athlete')"><span class="ob-option-sm-icon">🏆</span><div class="ob-option-sm-name">Athlete</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">Competitive</div></div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        </div>
+        <button class="ob-btn" id="obBtn3" onclick="obNext(4)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Focus areas -->
+    <div class="ob-step" id="ob-step-4">
+      <div class="ob-hero">
+        <div class="ob-headline">What do you<br><em>struggle with?</em></div>
+        <div class="ob-sub">Your AI coach will focus on these areas first. Select all that apply.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-options" id="obStruggleOptions" style="gap:8px">
+          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','consistency')"><div class="ob-opt-icon">📅</div><div><div class="ob-opt-name">Staying consistent</div></div></div>
+          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','anxiety')"><div class="ob-opt-icon">😰</div><div><div class="ob-opt-name">Stress & anxiety</div></div></div>
+          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','nutrition')"><div class="ob-opt-icon">🍕</div><div><div class="ob-opt-name">Eating habits / nutrition</div></div></div>
+          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','sleep')"><div class="ob-opt-icon">😴</div><div><div class="ob-opt-name">Sleep quality</div></div></div>
+          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','motivation')"><div class="ob-opt-icon">⚡</div><div><div class="ob-opt-name">Motivation & energy</div></div></div>
+          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','burnout')"><div class="ob-opt-icon">🔋</div><div><div class="ob-opt-name">Burnout</div></div></div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div>
+        </div>
+        <button class="ob-btn" onclick="obNext(5)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Ready -->
+    <div class="ob-step" id="ob-step-5">
+      <div class="ob-hero" style="padding-top:56px">
+        <span style="font-size:72px;display:block;margin-bottom:16px;animation:buBounce 0.7s cubic-bezier(0.34,1.56,0.64,1) both">⬡</span>
+        <div class="ob-headline" id="obReadyTitle">Ready to<br><em>rise?</em></div>
+        <div class="ob-sub" id="obReadySub">Your personalized Risn experience is set up. Your AI coach knows your goals, your struggles, and your level. Let's go.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-founder-card">
+          <div class="ob-founder-tag">✦ Your Journey Starts Now</div>
+          <div class="ob-founder-txt" id="obPersonalized">Based on your goals, Risn has set your nutrition targets, coaching focus, and first workout. Everything is ready for you.</div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div>
+        </div>
+        <button class="ob-btn" onclick="completeOnboarding()">Start Rising →</button>
+      </div>
+    </div>
+  </div><!-- /onboarding -->
 
   <!-- LEVEL UP OVERLAY -->
   <div class="levelup-overlay" id="levelupOverlay">
@@ -1865,7 +2222,18 @@ function buildSum(){
   if(fState.level)h+=`<span class="sum-chip sum-b">${levelLabels[fState.level]}</span>`;
   r.innerHTML=h;
 }
-function scrollTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const screen=document.getElementById('s-fitness');
+  if(screen){
+    const elTop=el.getBoundingClientRect().top;
+    const screenTop=screen.getBoundingClientRect().top;
+    screen.scrollTo({top:screen.scrollTop+(elTop-screenTop)-16,behavior:'smooth'});
+  } else {
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
 
 async function generateWorkout(){
   const{type,split,level}=fState;
@@ -2482,6 +2850,172 @@ document.addEventListener("click",e=>{
    addStreak();
  }
 });
+
+// ══════════════════════════════════════
+// ONBOARDING
+// ══════════════════════════════════════
+let obData={name:'',goal:'',exp:'',struggles:[]};
+let obCurrentStep=1;
+const OB_STEPS=5;
+
+function initOnboarding(){
+  const seen=localStorage.getItem('risn_onboarded');
+  if(seen){
+    document.getElementById('obScreen').style.display='none';
+    // Restore name in community avatar
+    const name=localStorage.getItem('risn_name')||'R';
+    const av=document.getElementById('communityAvatar');
+    if(av)av.textContent=name[0].toUpperCase();
+    document.getElementById('home-greeting-name')&&(document.getElementById('home-greeting-name').textContent=name);
+  } else {
+    document.getElementById('obScreen').style.display='flex';
+    document.getElementById('bottomNav').style.display='none';
+  }
+}
+
+function obNext(step){
+  // Hide current
+  document.getElementById(`ob-step-${obCurrentStep}`).classList.remove('active');
+  obCurrentStep=step;
+  document.getElementById(`ob-step-${step}`).classList.add('active');
+  // Update progress bar
+  const pct=(step/OB_STEPS)*100;
+  document.getElementById('obProgressFill').style.width=pct+'%';
+  // Step 5 personalise message
+  if(step===5){
+    const n=obData.name||'friend';
+    document.getElementById('obReadyTitle').innerHTML=`Ready,<br><em>${n}?</em>`;
+    const goalMap={'lose-fat':'cut to single-digit body fat','build-muscle':'lean bulk with precision','recomp':'recomp — lose fat and build muscle','performance':'peak performance','mental':'mental resilience and clarity'};
+    document.getElementById('obPersonalized').textContent=`Your AI coach is set to help you ${goalMap[obData.goal]||'reach your goals'}. Your nutrition targets, workout plan, and daily coaching are all personalised to your ${obData.exp||'current'} level.`;
+  }
+}
+
+function checkObStep1(){
+  const val=document.getElementById('obName').value.trim();
+  obData.name=val;
+  document.getElementById('obBtn1').disabled=val.length<2;
+}
+
+function selectObOption(el,type,val){
+  el.closest('.ob-options').querySelectorAll('.ob-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  obData[type]=val;
+  const btnMap={goal:'obBtn2',exp:'obBtn3'};
+  if(btnMap[type])document.getElementById(btnMap[type]).disabled=false;
+}
+
+function selectObOptionSm(el,type,val){
+  el.closest('.ob-option-grid').querySelectorAll('.ob-option-sm').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  obData[type]=val;
+  document.getElementById('obBtn3').disabled=false;
+}
+
+function toggleObMulti(el,type,val){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){
+    if(!obData.struggles.includes(val))obData.struggles.push(val);
+  } else {
+    obData.struggles=obData.struggles.filter(s=>s!==val);
+  }
+}
+
+function completeOnboarding(){
+  // Save to localStorage
+  localStorage.setItem('risn_onboarded','true');
+  localStorage.setItem('risn_name',obData.name);
+  localStorage.setItem('risn_goal',obData.goal);
+  localStorage.setItem('risn_exp',obData.exp);
+  localStorage.setItem('risn_struggles',JSON.stringify(obData.struggles));
+  // Update greeting
+  const greet=document.querySelector('.home-greeting');
+  if(greet)greet.textContent=`Welcome, ${obData.name} 👋`;
+  // Update community avatar
+  const av=document.getElementById('communityAvatar');
+  if(av)av.textContent=obData.name[0]?.toUpperCase()||'R';
+  // Hide onboarding, show nav
+  const ob=document.getElementById('obScreen');
+  ob.style.opacity='0';
+  ob.style.transition='opacity 0.4s ease';
+  setTimeout(()=>{ob.style.display='none';},400);
+  document.getElementById('bottomNav').style.display='flex';
+  switchTab('home');
+  setTimeout(()=>showToast(`Welcome to Risn, ${obData.name}! Your journey starts now 🔥`),500);
+}
+
+// Init onboarding on load
+initOnboarding();
+
+// ══════════════════════════════════════
+// COMMUNITY FEED
+// ══════════════════════════════════════
+let activePostTag='win';
+let communityPosts=JSON.parse(localStorage.getItem('risn_posts')||'[]');
+
+function selectPostTag(el,tag){
+  document.querySelectorAll('.pc-tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  activePostTag=tag;
+}
+
+function filterFeed(btn,filter){
+  document.querySelectorAll('.ff-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  // In a real app this would filter — for now just show toast
+  if(filter!=='all')showToast(`Showing ${filter} posts`);
+}
+
+function submitPost(){
+  const input=document.getElementById('postInput');
+  const text=input.value.trim();
+  if(text.length<10){showToast('Write a bit more to share with the community 💬');return;}
+  const name=localStorage.getItem('risn_name')||'You';
+  const post={id:Date.now(),name,text,tag:activePostTag,time:'Just now',fires:0,muscles:0,comments:0,reacted:false};
+  communityPosts.unshift(post);
+  try{localStorage.setItem('risn_posts',JSON.stringify(communityPosts.slice(0,20)));}catch(e){}
+  // Render new post at top of feed
+  const feed=document.getElementById('communityFeed');
+  const tagMap={'win':'🏆 Win','workout':'💪 Workout','nutrition':'🍎 Nutrition','mindset':'🧘 Mindset'};
+  const tagColors={'win':'rgba(100,255,180,0.1)','workout':'rgba(116,185,255,0.1)','nutrition':'rgba(255,209,102,0.1)','mindset':'rgba(162,155,254,0.1)'};
+  const tagTxtColors={'win':'var(--accent)','workout':'var(--blue)','nutrition':'var(--gold)','mindset':'var(--purple)'};
+  const avatarColors=['linear-gradient(135deg,#64ffb4,#00b894)','linear-gradient(135deg,#74b9ff,#a29bfe)','linear-gradient(135deg,#ffd166,#ff9f43)','linear-gradient(135deg,#ff6b6b,#fd79a8)'];
+  const ac=avatarColors[Math.floor(Math.random()*avatarColors.length)];
+  const el=document.createElement('div');
+  el.className='post-card';
+  el.style.animation='screenIn 0.35s ease';
+  el.innerHTML=`
+    <div class="post-header">
+      <div class="post-avatar" style="background:${ac}">${name[0].toUpperCase()}</div>
+      <div class="post-user-info">
+        <div class="post-username">${name} <span style="color:var(--accent);font-size:10px">⚡ Riser</span></div>
+        <div class="post-meta">Just now · <div class="online-dot" style="display:inline-block;vertical-align:middle"></div> Online</div>
+      </div>
+      <span class="post-badge" style="background:${tagColors[activePostTag]};color:${tagTxtColors[activePostTag]}">${tagMap[activePostTag]}</span>
+    </div>
+    <div class="post-body">${text}</div>
+    <div class="post-actions">
+      <div class="react-btn" onclick="toggleReact(this)">🔥 <span class="react-count">0</span></div>
+      <div class="react-btn" onclick="toggleReact(this)">💪 <span class="react-count">0</span></div>
+      <button class="comment-btn">💬 0</button>
+      <button class="share-post-btn">↗</button>
+    </div>`;
+  feed.insertBefore(el,feed.firstChild);
+  input.value='';
+  input.style.height='auto';
+  showToast('Posted! Your community is rising with you 🔥');
+}
+
+function toggleReact(btn){
+  const count=btn.querySelector('.react-count');
+  const n=parseInt(count.textContent);
+  if(btn.classList.contains('reacted')){
+    btn.classList.remove('reacted');
+    count.textContent=Math.max(0,n-1);
+  } else {
+    btn.classList.add('reacted');
+    count.textContent=n+1;
+  }
+}
 </script>
 
 <script src="app.js"></script></body>
