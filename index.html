@@ -49,6 +49,10 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .nav-item.active .nav-icon{transform:scale(1.2);filter:drop-shadow(0 0 8px rgba(100,255,180,0.5));}
 .nav-item.active .nav-dot{opacity:1;}
 
+/* ── GLOBAL BUTTON FIX — no stretched text on wide screens ── */
+.gen-btn,.ob-btn,.ch-checkin-btn,.chf-btn,.share-report-btn,.ai-report-btn,.pam-save-btn,.ap-confirm-btn,.start-btn,.log-btn,.pes-btn,.add-photo-btn,.pc-post-btn,.wh-btn,.lu-btn,.bu-close,.rm-share-btn,.pc-post-btn{letter-spacing:0.01em!important;text-transform:none!important;}
+button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+
 /* ── SAFE AREA & RESPONSIVE ── */
 @supports (padding: max(0px)){
   .bottom-nav{padding-left:max(env(safe-area-inset-left),0px);padding-right:max(env(safe-area-inset-right),0px);}
@@ -376,7 +380,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .sum-a{background:rgba(100,255,180,0.1);border:1px solid rgba(100,255,180,0.2);color:var(--accent);}
 .sum-g{background:rgba(255,209,102,0.1);border:1px solid rgba(255,209,102,0.2);color:var(--gold);}
 .sum-b{background:rgba(116,185,255,0.1);border:1px solid rgba(116,185,255,0.2);color:var(--blue);}
-.gen-btn{width:100%;padding:15px;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.gen-btn{width:100%;padding:14px;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.02em;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;overflow:hidden;}
 .gen-btn:active{transform:scale(0.97);background:#4de8a0;}
 .gen-btn:disabled{background:rgba(100,255,180,0.2);color:rgba(100,255,180,0.4);cursor:default;transform:none;}
 
@@ -428,14 +432,14 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 /* Macro ring */
 .macro-ring-card{margin:0 20px 12px;background:linear-gradient(135deg,var(--surface),rgba(100,255,180,0.04));border:1px solid rgba(100,255,180,0.12);border-radius:22px;padding:20px 17px;}
 .mr-row{display:flex;align-items:center;gap:18px;}
-.mr-ring-wrap{position:relative;width:110px;height:110px;flex-shrink:0;}
-.mr-svg{width:110px;height:110px;transform:rotate(-90deg);}
-.mr-bg{fill:none;stroke:rgba(100,255,180,0.07);stroke-width:10;}
-.mr-fill{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(0.25,0.46,0.45,0.94);}
-.mr-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.mr-cal{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1;}
-.mr-cal-lbl{font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-family:'Syne',sans-serif;margin-top:1px;}
-.mr-rem{font-size:9px;color:var(--text-muted);margin-top:1px;}
+.mr-ring-wrap{position:relative;width:130px;height:130px;flex-shrink:0;}
+.mr-svg{width:130px;height:130px;transform:rotate(-90deg);}
+.mr-bg{fill:none;stroke:rgba(100,255,180,0.07);stroke-width:9;}
+.mr-fill{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(0.25,0.46,0.45,0.94);}
+.mr-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 10px;text-align:center;}
+.mr-cal{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;line-height:1;white-space:nowrap;}
+.mr-cal-lbl{font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-family:'Syne',sans-serif;margin-top:2px;}
+.mr-rem{font-size:9px;color:var(--text-muted);margin-top:2px;}
 .macro-bars-col{flex:1;display:flex;flex-direction:column;gap:10px;}
 .mb-row{display:flex;flex-direction:column;gap:3px;}
 .mb-top{display:flex;justify-content:space-between;align-items:center;}
@@ -610,7 +614,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .ob-option-sm-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text);transition:color 0.2s;}
 .ob-option-sm.selected .ob-option-sm-name{color:var(--accent);}
 .ob-footer{padding:20px 24px 0;display:flex;flex-direction:column;gap:10px;}
-.ob-btn{width:100%;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.ob-btn{width:100%;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.02em;cursor:pointer;transition:all 0.2s;}
 .ob-btn:active{transform:scale(0.97);}
 .ob-btn:disabled{background:rgba(100,255,180,0.2);color:rgba(100,255,180,0.4);cursor:default;}
 .ob-skip{background:none;border:none;color:var(--text-muted);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;text-align:center;padding:4px;}
@@ -1704,117 +1708,221 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 
   <!-- ONBOARDING OVERLAY -->
   <div class="ob-screen" id="obScreen">
-    <div class="ob-progress"><div class="ob-progress-fill" id="obProgressFill" style="width:20%"></div></div>
+    <div class="ob-progress"><div class="ob-progress-fill" id="obProgressFill" style="width:12.5%"></div></div>
 
-    <!-- Step 1: Welcome -->
+    <!-- Step 1: Welcome + Name -->
     <div class="ob-step active" id="ob-step-1">
       <div class="ob-hero">
         <span class="ob-logo">Risn</span>
         <div class="ob-headline">Rise every<br><em>single day.</em></div>
-        <div class="ob-sub">AI-powered wellness for your mind, body, nutrition and habits — all in one place built by someone who's lived it.</div>
+        <div class="ob-sub">AI-powered wellness for your mind, body, nutrition and habits — built by someone who's lived the transformation.</div>
       </div>
       <div class="ob-body">
         <div class="ob-founder-card">
           <div class="ob-founder-tag">✦ From the Founder</div>
-          <div class="ob-founder-txt">"I went from obese to sub-10% body fat. Men's Health wanted to cover my transformation. I built Risn because no app existed that handled the whole person. This is everything I know — in your pocket."</div>
+          <div class="ob-founder-txt">"I went from obese to sub-10% body fat. Men's Health wanted to cover my transformation. I built Risn because no app existed that handled the whole person."</div>
         </div>
         <span class="ob-label">What's your name?</span>
         <input class="ob-input" id="obName" type="text" placeholder="First name" oninput="checkObStep1()">
       </div>
       <div class="ob-footer">
-        <div class="ob-dots">
-          <div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
-        </div>
+        <div class="ob-dots" id="obDots1"></div>
         <button class="ob-btn" id="obBtn1" onclick="obNext(2)" disabled>Let's Rise →</button>
       </div>
     </div>
 
-    <!-- Step 2: Goal -->
+    <!-- Step 2: Gender -->
     <div class="ob-step" id="ob-step-2">
       <div class="ob-hero">
+        <div class="ob-headline">You are<br><em>…?</em></div>
+        <div class="ob-sub">This determines your BMR formula and ensures your calorie and macro targets are accurate for your biology.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-option-grid" id="obGenderOptions" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+          <div class="ob-option-sm" style="padding:24px 16px" onclick="selectObOptionSm(this,'gender','male');document.getElementById('obBtn2').disabled=false">
+            <span class="ob-option-sm-icon" style="font-size:36px">♂️</span>
+            <div class="ob-option-sm-name" style="font-size:14px;margin-top:8px">Male</div>
+          </div>
+          <div class="ob-option-sm" style="padding:24px 16px" onclick="selectObOptionSm(this,'gender','female');document.getElementById('obBtn2').disabled=false">
+            <span class="ob-option-sm-icon" style="font-size:36px">♀️</span>
+            <div class="ob-option-sm-name" style="font-size:14px;margin-top:8px">Female</div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots" id="obDots2"></div>
+        <button class="ob-btn" id="obBtn2" onclick="obNext(3)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Goal — same options for everyone -->
+    <div class="ob-step" id="ob-step-3">
+      <div class="ob-hero">
         <div class="ob-headline">What's your<br><em>main goal?</em></div>
-        <div class="ob-sub">Risn personalizes everything — your workouts, nutrition targets, and AI coaching — around what you're actually trying to achieve.</div>
+        <div class="ob-sub">Risn personalizes your workouts, nutrition targets, and AI coaching around what you're actually trying to achieve.</div>
       </div>
       <div class="ob-body">
         <div class="ob-options" id="obGoalOptions">
           <div class="ob-option" onclick="selectObOption(this,'goal','lose-fat')"><div class="ob-opt-icon">🔥</div><div><div class="ob-opt-name">Lose Fat</div><div class="ob-opt-desc">Cut body fat while preserving muscle</div></div></div>
           <div class="ob-option" onclick="selectObOption(this,'goal','build-muscle')"><div class="ob-opt-icon">💪</div><div><div class="ob-opt-name">Build Muscle</div><div class="ob-opt-desc">Lean bulk — size with minimal fat gain</div></div></div>
           <div class="ob-option" onclick="selectObOption(this,'goal','recomp')"><div class="ob-opt-icon">⚡</div><div><div class="ob-opt-name">Body Recomp</div><div class="ob-opt-desc">Lose fat AND build muscle simultaneously</div></div></div>
-          <div class="ob-option" onclick="selectObOption(this,'goal','performance')"><div class="ob-opt-icon">🏃</div><div><div class="ob-opt-name">Performance</div><div class="ob-opt-desc">Improve fitness, strength, and energy</div></div></div>
-          <div class="ob-option" onclick="selectObOption(this,'goal','mental')"><div class="ob-opt-icon">🧘</div><div><div class="ob-opt-name">Mental Wellness</div><div class="ob-opt-desc">Reduce stress, anxiety, and build resilience</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'goal','performance')"><div class="ob-opt-icon">🏃</div><div><div class="ob-opt-name">Performance</div><div class="ob-opt-desc">Improve fitness, strength, and endurance</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'goal','mental')"><div class="ob-opt-icon">🧘</div><div><div class="ob-opt-name">Mental Wellness</div><div class="ob-opt-desc">Reduce stress, anxiety, build resilience</div></div></div>
         </div>
       </div>
       <div class="ob-footer">
-        <div class="ob-dots">
-          <div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
-        </div>
-        <button class="ob-btn" id="obBtn2" onclick="obNext(3)" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <!-- Step 3: Experience -->
-    <div class="ob-step" id="ob-step-3">
-      <div class="ob-hero">
-        <div class="ob-headline">Your fitness<br><em>experience?</em></div>
-        <div class="ob-sub">This shapes the complexity of your AI-generated workouts and coaching style.</div>
-      </div>
-      <div class="ob-body">
-        <div class="ob-option-grid" id="obExpOptions">
-          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','beginner')"><span class="ob-option-sm-icon">🌱</span><div class="ob-option-sm-name">Beginner</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">Under 1 year</div></div>
-          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','intermediate')"><span class="ob-option-sm-icon">🔥</span><div class="ob-option-sm-name">Intermediate</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">1–3 years</div></div>
-          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','advanced')"><span class="ob-option-sm-icon">⚡</span><div class="ob-option-sm-name">Advanced</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">3+ years</div></div>
-          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','athlete')"><span class="ob-option-sm-icon">🏆</span><div class="ob-option-sm-name">Athlete</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">Competitive</div></div>
-        </div>
-      </div>
-      <div class="ob-footer">
-        <div class="ob-dots">
-          <div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div>
-        </div>
+        <div class="ob-dots" id="obDots3"></div>
         <button class="ob-btn" id="obBtn3" onclick="obNext(4)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Step 4: Focus areas -->
+    <!-- Step 4: Body stats — height, weight, age -->
     <div class="ob-step" id="ob-step-4">
       <div class="ob-hero">
-        <div class="ob-headline">What do you<br><em>struggle with?</em></div>
-        <div class="ob-sub">Your AI coach will focus on these areas first. Select all that apply.</div>
+        <div class="ob-headline">Your body<br><em>stats</em></div>
+        <div class="ob-sub">Used to calculate your precise BMR and calorie targets using the Mifflin-St Jeor formula. All US measurements.</div>
       </div>
       <div class="ob-body">
-        <div class="ob-options" id="obStruggleOptions" style="gap:8px">
-          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','consistency')"><div class="ob-opt-icon">📅</div><div><div class="ob-opt-name">Staying consistent</div></div></div>
-          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','anxiety')"><div class="ob-opt-icon">😰</div><div><div class="ob-opt-name">Stress & anxiety</div></div></div>
-          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','nutrition')"><div class="ob-opt-icon">🍕</div><div><div class="ob-opt-name">Eating habits / nutrition</div></div></div>
-          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','sleep')"><div class="ob-opt-icon">😴</div><div><div class="ob-opt-name">Sleep quality</div></div></div>
-          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','motivation')"><div class="ob-opt-icon">⚡</div><div><div class="ob-opt-name">Motivation & energy</div></div></div>
-          <div class="ob-option" style="padding:12px 16px" onclick="toggleObMulti(this,'struggle','burnout')"><div class="ob-opt-icon">🔋</div><div><div class="ob-opt-name">Burnout</div></div></div>
+        <span class="ob-label">Height</span>
+        <div style="display:flex;gap:10px;margin-bottom:4px">
+          <div style="flex:1;position:relative">
+            <input class="ob-input" id="obFeet" type="number" placeholder="5" min="3" max="8" style="padding-right:36px" oninput="checkObStep4()">
+            <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">ft</span>
+          </div>
+          <div style="flex:1;position:relative">
+            <input class="ob-input" id="obInches" type="number" placeholder="10" min="0" max="11" style="padding-right:36px" oninput="checkObStep4()">
+            <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">in</span>
+          </div>
+        </div>
+        <span class="ob-label" style="margin-top:14px">Weight</span>
+        <div style="position:relative;margin-bottom:4px">
+          <input class="ob-input" id="obWeight" type="number" placeholder="175" min="80" max="500" style="padding-right:46px" oninput="checkObStep4()">
+          <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">lbs</span>
+        </div>
+        <span class="ob-label" style="margin-top:14px">Age</span>
+        <div style="position:relative">
+          <input class="ob-input" id="obAge" type="number" placeholder="28" min="16" max="99" style="padding-right:52px" oninput="checkObStep4()">
+          <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">yrs</span>
         </div>
       </div>
       <div class="ob-footer">
-        <div class="ob-dots">
-          <div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div><div class="ob-dot"></div>
-        </div>
-        <button class="ob-btn" onclick="obNext(5)">Continue →</button>
+        <div class="ob-dots" id="obDots4"></div>
+        <button class="ob-btn" id="obBtn4" onclick="obNext(5)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Step 5: Ready -->
+    <!-- Step 5: Activity level -->
     <div class="ob-step" id="ob-step-5">
-      <div class="ob-hero" style="padding-top:56px">
-        <span style="font-size:72px;display:block;margin-bottom:16px;animation:buBounce 0.7s cubic-bezier(0.34,1.56,0.64,1) both">⬡</span>
-        <div class="ob-headline" id="obReadyTitle">Ready to<br><em>rise?</em></div>
-        <div class="ob-sub" id="obReadySub">Your personalized Risn experience is set up. Your AI coach knows your goals, your struggles, and your level. Let's go.</div>
+      <div class="ob-hero">
+        <div class="ob-headline">How active<br><em>are you?</em></div>
+        <div class="ob-sub">This multiplies your BMR to give your Total Daily Energy Expenditure — your actual calorie burn.</div>
       </div>
       <div class="ob-body">
-        <div class="ob-founder-card">
-          <div class="ob-founder-tag">✦ Your Journey Starts Now</div>
-          <div class="ob-founder-txt" id="obPersonalized">Based on your goals, Risn has set your nutrition targets, coaching focus, and first workout. Everything is ready for you.</div>
+        <div class="ob-options" id="obActivityOptions">
+          <div class="ob-option" onclick="selectObOption(this,'activity','sedentary')"><div class="ob-opt-icon">🪑</div><div><div class="ob-opt-name">Sedentary</div><div class="ob-opt-desc">Desk job, little to no exercise (×1.2)</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'activity','light')"><div class="ob-opt-icon">🚶</div><div><div class="ob-opt-name">Lightly Active</div><div class="ob-opt-desc">Light exercise 1–3 days/week (×1.375)</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'activity','moderate')"><div class="ob-opt-icon">🏃</div><div><div class="ob-opt-name">Moderately Active</div><div class="ob-opt-desc">Moderate exercise 3–5 days/week (×1.55)</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'activity','very')"><div class="ob-opt-icon">💪</div><div><div class="ob-opt-name">Very Active</div><div class="ob-opt-desc">Hard exercise 6–7 days/week (×1.725)</div></div></div>
+          <div class="ob-option" onclick="selectObOption(this,'activity','athlete')"><div class="ob-opt-icon">🏆</div><div><div class="ob-opt-name">Athlete / Physical Job</div><div class="ob-opt-desc">Twice daily training or labor job (×1.9)</div></div></div>
         </div>
       </div>
       <div class="ob-footer">
-        <div class="ob-dots">
-          <div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot active"></div>
+        <div class="ob-dots" id="obDots5"></div>
+        <button class="ob-btn" id="obBtn5" onclick="obNext(6)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Experience level -->
+    <div class="ob-step" id="ob-step-6">
+      <div class="ob-hero">
+        <div class="ob-headline">Training<br><em>experience?</em></div>
+        <div class="ob-sub">Shapes your AI-generated workout complexity and progression speed.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-option-grid" id="obExpOptions">
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','beginner');document.getElementById('obBtn6').disabled=false"><span class="ob-option-sm-icon">🌱</span><div class="ob-option-sm-name">Beginner</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">Under 1 year</div></div>
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','intermediate');document.getElementById('obBtn6').disabled=false"><span class="ob-option-sm-icon">🔥</span><div class="ob-option-sm-name">Intermediate</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">1–3 years</div></div>
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','advanced');document.getElementById('obBtn6').disabled=false"><span class="ob-option-sm-icon">⚡</span><div class="ob-option-sm-name">Advanced</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">3+ years</div></div>
+          <div class="ob-option-sm" onclick="selectObOptionSm(this,'exp','athlete');document.getElementById('obBtn6').disabled=false"><span class="ob-option-sm-icon">🏆</span><div class="ob-option-sm-name">Athlete</div><div style="font-size:9px;color:var(--text-muted);margin-top:3px">Competitive</div></div>
         </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots" id="obDots6"></div>
+        <button class="ob-btn" id="obBtn6" onclick="obNext(7)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Calorie setup — calculated OR manual -->
+    <div class="ob-step" id="ob-step-7">
+      <div class="ob-hero">
+        <div class="ob-headline">Your calorie<br><em>targets</em></div>
+      </div>
+      <div class="ob-body">
+        <!-- Calculated result card -->
+        <div id="obCalcCard" style="background:linear-gradient(135deg,rgba(100,255,180,0.1),rgba(100,255,180,0.03));border:1px solid rgba(100,255,180,0.2);border-radius:20px;padding:18px;margin-bottom:16px">
+          <div style="font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px">✦ Your Calculated Targets</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+            <div style="background:var(--surface2);border-radius:13px;padding:12px;text-align:center">
+              <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--accent)" id="obCalcCals">—</div>
+              <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Calories/day</div>
+            </div>
+            <div style="background:var(--surface2);border-radius:13px;padding:12px;text-align:center">
+              <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--blue)" id="obCalcProt">—</div>
+              <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Protein (g)</div>
+            </div>
+            <div style="background:var(--surface2);border-radius:13px;padding:12px;text-align:center">
+              <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold)" id="obCalcCarbs">—</div>
+              <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Carbs (g)</div>
+            </div>
+            <div style="background:var(--surface2);border-radius:13px;padding:12px;text-align:center">
+              <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--red)" id="obCalcFat">—</div>
+              <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Fat (g)</div>
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--text-muted);line-height:1.6" id="obCalcNote">Based on your BMR + activity level + goal</div>
+        </div>
+        <!-- Toggle: use calculated or set own -->
+        <div style="display:flex;gap:10px;margin-bottom:14px">
+          <div class="ob-option-sm" id="obUseCalc" style="flex:1;padding:12px" onclick="selectCalorieMode('calc')">
+            <span class="ob-option-sm-icon" style="font-size:20px">🤖</span>
+            <div class="ob-option-sm-name" style="font-size:11px">Use Calculated</div>
+          </div>
+          <div class="ob-option-sm" id="obUseManual" style="flex:1;padding:12px" onclick="selectCalorieMode('manual')">
+            <span class="ob-option-sm-icon" style="font-size:20px">✏️</span>
+            <div class="ob-option-sm-name" style="font-size:11px">Set My Own</div>
+          </div>
+        </div>
+        <!-- Manual input (hidden by default) -->
+        <div id="obManualInputs" style="display:none;flex-direction:column;gap:10px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="position:relative"><input class="ob-input" id="manCals" type="number" placeholder="2300" style="padding-right:46px"><span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">kcal</span></div>
+            <div style="position:relative"><input class="ob-input" id="manProt" type="number" placeholder="180" style="padding-right:30px"><span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">g P</span></div>
+            <div style="position:relative"><input class="ob-input" id="manCarbs" type="number" placeholder="250" style="padding-right:30px"><span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">g C</span></div>
+            <div style="position:relative"><input class="ob-input" id="manFat" type="number" placeholder="75" style="padding-right:30px"><span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700">g F</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots" id="obDots7"></div>
+        <button class="ob-btn" id="obBtn7" onclick="obNext(8)" disabled>Looks Good →</button>
+      </div>
+    </div>
+
+    <!-- Step 8: Ready -->
+    <div class="ob-step" id="ob-step-8">
+      <div class="ob-hero" style="padding-top:48px">
+        <span style="font-size:72px;display:block;margin-bottom:16px;animation:buBounce 0.7s cubic-bezier(0.34,1.56,0.64,1) both">⬡</span>
+        <div class="ob-headline" id="obReadyTitle">Ready to<br><em>rise?</em></div>
+        <div class="ob-sub" id="obReadySub">Everything is set. Your AI coach knows your goals, your body, and your level. Let's go.</div>
+      </div>
+      <div class="ob-body">
+        <div class="ob-founder-card">
+          <div class="ob-founder-tag">✦ Your Personal Plan</div>
+          <div class="ob-founder-txt" id="obPersonalized">Your targets are calculated and ready. Every feature in Risn is now personalised to you.</div>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots" id="obDots8"></div>
         <button class="ob-btn" onclick="completeOnboarding()">Start Rising →</button>
       </div>
     </div>
@@ -2852,41 +2960,65 @@ document.addEventListener("click",e=>{
 });
 
 // ══════════════════════════════════════
-// ONBOARDING
+// ONBOARDING — 8 steps with BMR calculator
 // ══════════════════════════════════════
-let obData={name:'',goal:'',exp:'',struggles:[]};
+const OB_STEPS=8;
+let obData={name:'',gender:'',goal:'',feet:'',inches:'',weight:'',age:'',activity:'',exp:'',struggles:[],calorieMode:'calc',calories:0,protein:0,carbs:0,fat:0};
 let obCurrentStep=1;
-const OB_STEPS=5;
+
+function renderObDots(step){
+  for(let i=1;i<=OB_STEPS;i++){
+    const el=document.getElementById(`obDots${i}`);
+    if(!el)continue;
+    el.innerHTML=Array.from({length:OB_STEPS},(_,j)=>`<div class="ob-dot${j+1===step?' active':''}"></div>`).join('');
+  }
+}
 
 function initOnboarding(){
+  renderObDots(1);
   const seen=localStorage.getItem('risn_onboarded');
   if(seen){
     document.getElementById('obScreen').style.display='none';
-    // Restore name in community avatar
-    const name=localStorage.getItem('risn_name')||'R';
+    const name=localStorage.getItem('risn_name')||'';
+    if(name){const g=document.querySelector('.home-greeting');if(g)g.textContent=`Welcome back, ${name} 👋`;}
     const av=document.getElementById('communityAvatar');
-    if(av)av.textContent=name[0].toUpperCase();
-    document.getElementById('home-greeting-name')&&(document.getElementById('home-greeting-name').textContent=name);
+    if(av&&name)av.textContent=name[0].toUpperCase();
+    applyStoredTargets();
   } else {
     document.getElementById('obScreen').style.display='flex';
     document.getElementById('bottomNav').style.display='none';
   }
 }
 
+function applyStoredTargets(){
+  const cals=parseInt(localStorage.getItem('risn_calories')||'2300');
+  const prot=parseInt(localStorage.getItem('risn_protein')||'180');
+  const carbs=parseInt(localStorage.getItem('risn_carbs')||'250');
+  const fat=parseInt(localStorage.getItem('risn_fat')||'75');
+  // Apply to nutrition screen
+  const calEl=document.getElementById('calConsumed');
+  const remEl=document.getElementById('calRem');
+  if(calEl)calEl.textContent='0';
+  if(remEl)remEl.textContent=cals+' left';
+}
+
 function obNext(step){
-  // Hide current
   document.getElementById(`ob-step-${obCurrentStep}`).classList.remove('active');
   obCurrentStep=step;
-  document.getElementById(`ob-step-${step}`).classList.add('active');
-  // Update progress bar
+  renderObDots(step);
   const pct=(step/OB_STEPS)*100;
   document.getElementById('obProgressFill').style.width=pct+'%';
-  // Step 5 personalise message
-  if(step===5){
+  document.getElementById(`ob-step-${step}`).classList.add('active');
+  // Scroll to top of onboarding
+  document.getElementById('obScreen').scrollTop=0;
+  // When reaching step 7, run BMR calculation
+  if(step===7) runBMRCalc();
+  // When reaching step 8, personalise message
+  if(step===8){
     const n=obData.name||'friend';
     document.getElementById('obReadyTitle').innerHTML=`Ready,<br><em>${n}?</em>`;
-    const goalMap={'lose-fat':'cut to single-digit body fat','build-muscle':'lean bulk with precision','recomp':'recomp — lose fat and build muscle','performance':'peak performance','mental':'mental resilience and clarity'};
-    document.getElementById('obPersonalized').textContent=`Your AI coach is set to help you ${goalMap[obData.goal]||'reach your goals'}. Your nutrition targets, workout plan, and daily coaching are all personalised to your ${obData.exp||'current'} level.`;
+    const goalMap={'lose-fat':'cut to your goal body fat','build-muscle':'lean bulk with precision','recomp':'recomp — lose fat and build muscle','performance':'peak athletic performance','mental':'mental resilience and clarity'};
+    document.getElementById('obPersonalized').textContent=`Targets set: ${obData.calories} kcal/day · ${obData.protein}g protein · ${obData.carbs}g carbs · ${obData.fat}g fat. Your AI coach is calibrated to help you ${goalMap[obData.goal]||'reach your goals'}.`;
   }
 }
 
@@ -2896,54 +3028,172 @@ function checkObStep1(){
   document.getElementById('obBtn1').disabled=val.length<2;
 }
 
+function checkObStep4(){
+  const ft=document.getElementById('obFeet').value;
+  const inc=document.getElementById('obInches').value;
+  const wt=document.getElementById('obWeight').value;
+  const age=document.getElementById('obAge').value;
+  obData.feet=ft;obData.inches=inc;obData.weight=wt;obData.age=age;
+  document.getElementById('obBtn4').disabled=!(ft&&wt&&age);
+}
+
 function selectObOption(el,type,val){
   el.closest('.ob-options').querySelectorAll('.ob-option').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
   obData[type]=val;
-  const btnMap={goal:'obBtn2',exp:'obBtn3'};
+  const btnMap={goal:'obBtn3',activity:'obBtn5'};
   if(btnMap[type])document.getElementById(btnMap[type]).disabled=false;
 }
 
 function selectObOptionSm(el,type,val){
-  el.closest('.ob-option-grid').querySelectorAll('.ob-option-sm').forEach(o=>o.classList.remove('selected'));
+  el.closest('[id^="ob"]')?el.closest('[id]').querySelectorAll('.ob-option-sm').forEach(o=>o.classList.remove('selected')):el.parentNode.querySelectorAll('.ob-option-sm').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
   obData[type]=val;
-  document.getElementById('obBtn3').disabled=false;
 }
 
 function toggleObMulti(el,type,val){
   el.classList.toggle('selected');
-  if(el.classList.contains('selected')){
-    if(!obData.struggles.includes(val))obData.struggles.push(val);
+  if(el.classList.contains('selected')){if(!obData.struggles.includes(val))obData.struggles.push(val);}
+  else obData.struggles=obData.struggles.filter(s=>s!==val);
+}
+
+// ── BMR CALCULATOR ──
+function runBMRCalc(){
+  const feet=parseFloat(obData.feet)||5;
+  const inches=parseFloat(obData.inches)||10;
+  const weightLbs=parseFloat(obData.weight)||175;
+  const age=parseFloat(obData.age)||28;
+  const gender=obData.gender||'male';
+  const activity=obData.activity||'moderate';
+  const goal=obData.goal||'maintain';
+
+  // Convert US measurements to metric
+  const heightCm=(feet*12+inches)*2.54;
+  const weightKg=weightLbs*0.453592;
+
+  // Mifflin-St Jeor BMR
+  let bmr;
+  if(gender==='male'){
+    bmr=66.5+(13.75*weightKg)+(5.003*heightCm)-(6.75*age);
   } else {
-    obData.struggles=obData.struggles.filter(s=>s!==val);
+    bmr=655.1+(9.563*weightKg)+(1.850*heightCm)-(4.676*age);
+  }
+
+  // Activity multiplier (TDEE)
+  const actMap={sedentary:1.2,light:1.375,moderate:1.55,very:1.725,athlete:1.9};
+  const tdee=Math.round(bmr*(actMap[activity]||1.55));
+
+  // Adjust calories for goal
+  const goalAdj={
+    'lose-fat': Math.round(tdee*0.80),      // 20% deficit
+    'build-muscle': Math.round(tdee*1.10),   // 10% surplus
+    'recomp': tdee,                          // maintenance
+    'performance': Math.round(tdee*1.05),   // slight surplus
+    'mental': tdee                           // maintenance
+  };
+  const targetCals=goalAdj[goal]||tdee;
+
+  // Macro split based on goal (g, then calories check)
+  let protG,carbG,fatG;
+  if(goal==='lose-fat'){
+    protG=Math.round(weightLbs*1.0); // 1g per lb bodyweight
+    fatG=Math.round(targetCals*0.25/9);
+    carbG=Math.round((targetCals-(protG*4)-(fatG*9))/4);
+  } else if(goal==='build-muscle'){
+    protG=Math.round(weightLbs*0.9);
+    fatG=Math.round(targetCals*0.25/9);
+    carbG=Math.round((targetCals-(protG*4)-(fatG*9))/4);
+  } else {
+    protG=Math.round(weightLbs*0.8);
+    fatG=Math.round(targetCals*0.28/9);
+    carbG=Math.round((targetCals-(protG*4)-(fatG*9))/4);
+  }
+  // Ensure carbs never go negative
+  carbG=Math.max(carbG,50);
+
+  obData.calories=targetCals;
+  obData.protein=protG;
+  obData.carbs=carbG;
+  obData.fat=fatG;
+
+  // Update UI
+  document.getElementById('obCalcCals').textContent=targetCals.toLocaleString();
+  document.getElementById('obCalcProt').textContent=protG+'g';
+  document.getElementById('obCalcCarbs').textContent=carbG+'g';
+  document.getElementById('obCalcFat').textContent=fatG+'g';
+
+  const goalNotes={'lose-fat':`${Math.round((tdee-targetCals))} kcal deficit from your ${tdee.toLocaleString()} TDEE — fat loss mode`,'build-muscle':`${Math.round(targetCals-tdee)} kcal surplus from your ${tdee.toLocaleString()} TDEE — lean bulk mode`,'recomp':`Maintenance at your ${tdee.toLocaleString()} TDEE — recomp mode`,'performance':`Slight surplus at your ${tdee.toLocaleString()} TDEE — performance mode`,'mental':`Maintenance at your ${tdee.toLocaleString()} TDEE`};
+  document.getElementById('obCalcNote').textContent=goalNotes[goal]||`Based on your ${tdee.toLocaleString()} TDEE`;
+
+  // Default to calculated mode
+  selectCalorieMode('calc');
+}
+
+function selectCalorieMode(mode){
+  obData.calorieMode=mode;
+  document.getElementById('obUseCalc').classList.toggle('selected',mode==='calc');
+  document.getElementById('obUseManual').classList.toggle('selected',mode==='manual');
+  document.getElementById('obManualInputs').style.display=mode==='manual'?'flex':'none';
+  document.getElementById('obCalcCard').style.opacity=mode==='manual'?'0.4':'1';
+  document.getElementById('obBtn7').disabled=false;
+  if(mode==='manual'){
+    // Pre-fill manual with calculated values
+    document.getElementById('manCals').value=obData.calories;
+    document.getElementById('manProt').value=obData.protein;
+    document.getElementById('manCarbs').value=obData.carbs;
+    document.getElementById('manFat').value=obData.fat;
   }
 }
 
 function completeOnboarding(){
-  // Save to localStorage
+  // If manual mode, grab those values
+  if(obData.calorieMode==='manual'){
+    obData.calories=parseInt(document.getElementById('manCals').value)||obData.calories;
+    obData.protein=parseInt(document.getElementById('manProt').value)||obData.protein;
+    obData.carbs=parseInt(document.getElementById('manCarbs').value)||obData.carbs;
+    obData.fat=parseInt(document.getElementById('manFat').value)||obData.fat;
+  }
+  // Save everything
   localStorage.setItem('risn_onboarded','true');
   localStorage.setItem('risn_name',obData.name);
+  localStorage.setItem('risn_gender',obData.gender);
   localStorage.setItem('risn_goal',obData.goal);
   localStorage.setItem('risn_exp',obData.exp);
+  localStorage.setItem('risn_calories',obData.calories);
+  localStorage.setItem('risn_protein',obData.protein);
+  localStorage.setItem('risn_carbs',obData.carbs);
+  localStorage.setItem('risn_fat',obData.fat);
   localStorage.setItem('risn_struggles',JSON.stringify(obData.struggles));
+
+  // Update app with real targets
+  const remEl=document.getElementById('calRem');
+  if(remEl)remEl.textContent=obData.calories+' left';
   // Update greeting
   const greet=document.querySelector('.home-greeting');
   if(greet)greet.textContent=`Welcome, ${obData.name} 👋`;
   // Update community avatar
   const av=document.getElementById('communityAvatar');
-  if(av)av.textContent=obData.name[0]?.toUpperCase()||'R';
-  // Hide onboarding, show nav
+  if(av&&obData.name)av.textContent=obData.name[0].toUpperCase();
+  // Update nutrition goal pill
+  const gp=document.getElementById('goalPill');
+  const goalLabels={'lose-fat':'🔥 Fat Loss','build-muscle':'💪 Lean Bulk','recomp':'⚡ Recomp','performance':'🏃 Performance','mental':'🧘 Wellness'};
+  if(gp)gp.textContent=goalLabels[obData.goal]||'🎯 My Goal';
+  // Update macro targets
+  const pVals=document.getElementById('pVals');const cVals=document.getElementById('cVals');const fVals=document.getElementById('fVals');
+  if(pVals)pVals.textContent=`0 / ${obData.protein}g`;
+  if(cVals)cVals.textContent=`0 / ${obData.carbs}g`;
+  if(fVals)fVals.textContent=`0 / ${obData.fat}g`;
+
+  // Animate out
   const ob=document.getElementById('obScreen');
-  ob.style.opacity='0';
-  ob.style.transition='opacity 0.4s ease';
+  ob.style.opacity='0';ob.style.transition='opacity 0.4s ease';
   setTimeout(()=>{ob.style.display='none';},400);
   document.getElementById('bottomNav').style.display='flex';
   switchTab('home');
-  setTimeout(()=>showToast(`Welcome to Risn, ${obData.name}! Your journey starts now 🔥`),500);
+  setTimeout(()=>showToast(`Welcome to Risn, ${obData.name}! Your ${obData.calories.toLocaleString()} kcal plan is ready 🔥`),500);
 }
 
-// Init onboarding on load
+// Init on load
 initOnboarding();
 
 // ══════════════════════════════════════
