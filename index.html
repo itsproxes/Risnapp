@@ -814,10 +814,42 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 @keyframes glowPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
 .phoenix-stage-lbl{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;z-index:1;}
 .phoenix-art{position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center;z-index:1;margin:2px 0;}
-.phoenix-body{font-size:84px;display:block;text-align:center;line-height:1;animation:phoenixHover 3s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(255,120,0,0.8)) drop-shadow(0 0 44px rgba(255,60,0,0.3));}
-@keyframes phoenixHover{0%,100%{transform:translateY(0) rotate(-2deg) scale(1);}33%{transform:translateY(-9px) rotate(2deg) scale(1.06);}66%{transform:translateY(-4px) rotate(-1deg) scale(1.02);}}
-.phoenix-body.wounded{filter:drop-shadow(0 0 10px rgba(255,0,0,0.7)) grayscale(0.6);animation:phoenixWounded 1.2s ease-in-out infinite;}
-@keyframes phoenixWounded{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-3px) rotate(-4deg);}}
+/* ─── PHOENIX VISUAL ART SYSTEM ─── */
+/* Each stage has its own visual — grows from tiny egg to full legend */
+.phoenix-art{position:relative;width:180px;height:180px;display:flex;align-items:center;justify-content:center;z-index:1;margin:4px 0;flex-shrink:0;}
+
+/* Stage 1 — Egg (small, pulsing, cracked) */
+.px-egg{display:none;align-items:center;justify-content:center;}
+.px-egg svg{animation:eggPulse 2s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(255,140,0,0.6));}
+@keyframes eggPulse{0%,100%{transform:scale(1) rotate(-2deg);}50%{transform:scale(1.08) rotate(2deg);}}
+
+/* Stage 2 — Hatchling (small bird shape, orange) */
+.px-hatchling{display:none;align-items:center;justify-content:center;}
+.px-hatchling svg{animation:phoenixHover 2.5s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(255,120,0,0.8));}
+
+/* Stage 3 — Juvenile (bigger, wings spread a bit) */
+.px-juvenile{display:none;align-items:center;justify-content:center;}
+.px-juvenile svg{animation:phoenixHover 2.2s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(255,80,0,0.9)) drop-shadow(0 0 40px rgba(255,160,0,0.4));}
+
+/* Stage 4 — Inferno (full size, blazing) */
+.px-inferno{display:none;align-items:center;justify-content:center;}
+.px-inferno svg{animation:infernoFloat 2s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(255,40,0,1)) drop-shadow(0 0 56px rgba(255,120,0,0.6));}
+@keyframes infernoFloat{0%,100%{transform:translateY(0) scale(1) rotate(-1deg);}33%{transform:translateY(-10px) scale(1.06) rotate(1deg);}66%{transform:translateY(-5px) scale(1.03) rotate(-0.5deg);}}
+
+/* Stage 5 — Legend (massive, golden, cosmic) */
+.px-legend{display:none;align-items:center;justify-content:center;}
+.px-legend svg{animation:legendFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 32px rgba(255,210,0,1)) drop-shadow(0 0 64px rgba(255,150,0,0.7)) drop-shadow(0 0 96px rgba(255,80,0,0.4));}
+@keyframes legendFloat{0%,100%{transform:translateY(0) scale(1);}25%{transform:translateY(-12px) scale(1.04) rotate(1deg);}75%{transform:translateY(-6px) scale(1.02) rotate(-1deg);}}
+
+/* Active stage shown via JS class on .phoenix-art */
+.phoenix-art.stage-1 .px-egg{display:flex;}
+.phoenix-art.stage-2 .px-hatchling{display:flex;}
+.phoenix-art.stage-3 .px-juvenile{display:flex;}
+.phoenix-art.stage-4 .px-inferno{display:flex;}
+.phoenix-art.stage-5 .px-legend{display:flex;}
+
+/* Wounded overlay tint */
+.phoenix-art.wounded svg{filter:drop-shadow(0 0 12px rgba(255,0,0,0.8)) grayscale(0.5)!important;animation-duration:0.8s!important;}
 .phoenix-react{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-size:30px;opacity:0;pointer-events:none;z-index:4;}
 .phoenix-react.burst{animation:reactBurst 1s cubic-bezier(0.25,0.46,0.45,0.94) forwards;}
 @keyframes reactBurst{0%{opacity:1;transform:translateX(-50%) translateY(0) scale(0.4);}60%{opacity:1;transform:translateX(-50%) translateY(-44px) scale(1.3);}100%{opacity:0;transform:translateX(-50%) translateY(-80px) scale(0.7);}}
@@ -913,7 +945,6 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 .qs-tag{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
 .qs-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);}
 .qs-text{font-family:'Instrument Serif',serif;font-size:17px;line-height:1.5;color:var(--text);margin-bottom:6px;}
-.qs-author{font-size:10px;color:var(--text-muted);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.08em;}
 .qs-tap{font-size:9px;color:var(--text-muted);position:absolute;bottom:12px;right:16px;font-family:'Syne',sans-serif;}
 /* Community feed styles */
 .community-header{padding:16px 20px 0;}
@@ -1076,7 +1107,6 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
       <div class="quote-strip" onclick="nextQuote()" id="quoteStrip">
         <div class="qs-tag"><div class="qs-dot"></div>Daily Fuel</div>
         <div class="qs-text" id="quoteText">"Success doesn't know these things about cold or early or tired. It just knows if you showed up or not."</div>
-        <div class="qs-author" id="quoteAuthor">— Greg Plitt</div>
         <div class="qs-tap">Tap for next →</div>
       </div>
 
@@ -1526,8 +1556,321 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
         <div class="flame-particles" id="flameParticles"></div>
         <div class="phoenix-stage-lbl" id="phoenixStageLbl">✦ STAGE 1 — SPARK</div>
         <div class="phoenix-art">
+        <div class="phoenix-art stage-1" id="phoenixArt">
           <div class="phoenix-react" id="phoenixReact">✨</div>
-          <span class="phoenix-body" id="phoenixEmoji">🐣</span>
+
+          <!-- STAGE 1: Egg — small cracked egg glowing with fire inside -->
+          <div class="px-egg">
+            <svg width="100" height="120" viewBox="0 0 100 120">
+              <!-- Egg body -->
+              <ellipse cx="50" cy="68" rx="36" ry="44" fill="url(#eggGrad)" stroke="#ff6600" stroke-width="1.5"/>
+              <!-- Crack lines -->
+              <path d="M50 36 L46 48 L52 52 L47 62" stroke="#ff8800" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M52 52 L58 56 L54 64" stroke="#ffaa00" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <!-- Glow from inside crack -->
+              <path d="M50 36 L46 48 L52 52 L47 62" stroke="#ffdd00" stroke-width="1" fill="none" opacity="0.8"/>
+              <!-- Small flame peeking out top -->
+              <ellipse cx="50" cy="32" rx="6" ry="9" fill="url(#flameTop)" opacity="0.9"/>
+              <ellipse cx="50" cy="30" rx="3" ry="6" fill="#fff4aa" opacity="0.7"/>
+              <defs>
+                <radialGradient id="eggGrad" cx="40%" cy="35%">
+                  <stop offset="0%" stop-color="#3a1800"/>
+                  <stop offset="60%" stop-color="#1a0800"/>
+                  <stop offset="100%" stop-color="#0f0400"/>
+                </radialGradient>
+                <linearGradient id="flameTop" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffee00"/>
+                  <stop offset="100%" stop-color="#ff4400"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- STAGE 2: Hatchling — tiny baby phoenix just out of shell -->
+          <div class="px-hatchling">
+            <svg width="120" height="140" viewBox="0 0 120 140">
+              <!-- Shell fragments -->
+              <path d="M40 115 L32 128 L48 122 Z" fill="#2a1000" stroke="#ff6600" stroke-width="1" opacity="0.8"/>
+              <path d="M80 115 L88 128 L72 122 Z" fill="#2a1000" stroke="#ff6600" stroke-width="1" opacity="0.8"/>
+              <!-- Tiny body -->
+              <ellipse cx="60" cy="98" rx="18" ry="14" fill="url(#hatchBody)"/>
+              <!-- Head -->
+              <circle cx="60" cy="76" r="14" fill="url(#hatchHead)"/>
+              <!-- Eyes -->
+              <circle cx="55" cy="73" r="3" fill="#ff8800"/>
+              <circle cx="65" cy="73" r="3" fill="#ff8800"/>
+              <circle cx="55" cy="73" r="1.5" fill="#ffdd00"/>
+              <circle cx="65" cy="73" r="1.5" fill="#ffdd00"/>
+              <!-- Beak -->
+              <path d="M57 80 L60 85 L63 80 Z" fill="#ffaa00"/>
+              <!-- Tiny stubby wings -->
+              <path d="M42 92 Q28 82 32 72 Q38 85 42 88 Z" fill="url(#wingL)"/>
+              <path d="M78 92 Q92 82 88 72 Q82 85 78 88 Z" fill="url(#wingR)"/>
+              <!-- Tail feathers (tiny) -->
+              <path d="M52 112 Q44 128 46 136" stroke="#ff6600" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M60 114 Q60 132 60 138" stroke="#ff8800" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M68 112 Q76 128 74 136" stroke="#ff6600" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Small head flame -->
+              <ellipse cx="60" cy="60" rx="8" ry="12" fill="url(#headFlame)" opacity="0.9"/>
+              <ellipse cx="60" cy="58" rx="4" ry="8" fill="#ffe566" opacity="0.7"/>
+              <defs>
+                <radialGradient id="hatchBody" cx="50%" cy="40%">
+                  <stop offset="0%" stop-color="#cc4400"/>
+                  <stop offset="100%" stop-color="#661100"/>
+                </radialGradient>
+                <radialGradient id="hatchHead" cx="45%" cy="40%">
+                  <stop offset="0%" stop-color="#ff6600"/>
+                  <stop offset="100%" stop-color="#aa2200"/>
+                </radialGradient>
+                <linearGradient id="wingL" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff8800"/>
+                  <stop offset="100%" stop-color="#cc3300"/>
+                </linearGradient>
+                <linearGradient id="wingR" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ff8800"/>
+                  <stop offset="100%" stop-color="#cc3300"/>
+                </linearGradient>
+                <linearGradient id="headFlame" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffee00"/>
+                  <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- STAGE 3: Juvenile — proper bird shape, wings start spreading -->
+          <div class="px-juvenile">
+            <svg width="160" height="160" viewBox="0 0 160 160">
+              <!-- Spread wings -->
+              <path d="M58 80 Q30 55 14 38 Q20 62 28 72 Q40 82 58 86 Z" fill="url(#jwingL)"/>
+              <path d="M102 80 Q130 55 146 38 Q140 62 132 72 Q120 82 102 86 Z" fill="url(#jwingR)"/>
+              <!-- Wing detail feathers L -->
+              <path d="M14 38 Q22 56 30 68" stroke="#ff9900" stroke-width="1.5" fill="none" opacity="0.6"/>
+              <path d="M22 34 Q28 52 34 64" stroke="#ffaa00" stroke-width="1" fill="none" opacity="0.5"/>
+              <!-- Wing detail feathers R -->
+              <path d="M146 38 Q138 56 130 68" stroke="#ff9900" stroke-width="1.5" fill="none" opacity="0.6"/>
+              <path d="M138 34 Q132 52 126 64" stroke="#ffaa00" stroke-width="1" fill="none" opacity="0.5"/>
+              <!-- Body -->
+              <ellipse cx="80" cy="100" rx="24" ry="20" fill="url(#jBody)"/>
+              <!-- Chest -->
+              <ellipse cx="80" cy="90" rx="18" ry="16" fill="url(#jChest)"/>
+              <!-- Head -->
+              <circle cx="80" cy="66" r="18" fill="url(#jHead)"/>
+              <!-- Crest flames -->
+              <path d="M72 50 Q68 36 72 24 Q76 38 74 48" fill="#ff4400" opacity="0.9"/>
+              <path d="M80 48 Q78 32 82 18 Q86 32 84 46" fill="#ff7700" opacity="0.9"/>
+              <path d="M88 50 Q92 36 88 24 Q84 38 86 48" fill="#ffaa00" opacity="0.9"/>
+              <path d="M76 46 Q74 34 78 22" stroke="#ffe566" stroke-width="1.5" fill="none" opacity="0.7"/>
+              <!-- Eyes -->
+              <circle cx="73" cy="63" r="4" fill="#ff8800"/>
+              <circle cx="87" cy="63" r="4" fill="#ff8800"/>
+              <circle cx="73" cy="63" r="2" fill="#ffee00"/>
+              <circle cx="87" cy="63" r="2" fill="#ffee00"/>
+              <!-- Beak -->
+              <path d="M76 72 L80 79 L84 72 Z" fill="#ffcc00"/>
+              <!-- Tail feathers -->
+              <path d="M68 118 Q56 136 52 152" stroke="#ff4400" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M76 120 Q72 140 70 154" stroke="#ff6600" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M84 120 Q88 140 90 154" stroke="#ff8800" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M92 118 Q104 136 108 152" stroke="#ffaa00" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="jwingL" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ff4400" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#ff8800"/>
+                </linearGradient>
+                <linearGradient id="jwingR" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff4400" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#ff8800"/>
+                </linearGradient>
+                <radialGradient id="jBody" cx="50%" cy="40%">
+                  <stop offset="0%" stop-color="#cc3300"/>
+                  <stop offset="100%" stop-color="#660000"/>
+                </radialGradient>
+                <radialGradient id="jChest" cx="50%" cy="40%">
+                  <stop offset="0%" stop-color="#ff6600"/>
+                  <stop offset="100%" stop-color="#aa2200"/>
+                </radialGradient>
+                <radialGradient id="jHead" cx="45%" cy="38%">
+                  <stop offset="0%" stop-color="#ff8800"/>
+                  <stop offset="100%" stop-color="#cc2200"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- STAGE 4: Inferno — full powerful phoenix, massive wings, blazing -->
+          <div class="px-inferno">
+            <svg width="170" height="170" viewBox="0 0 170 170">
+              <!-- Massive wing spread -->
+              <path d="M60 78 Q28 44 6 18 Q16 52 28 66 Q44 80 62 86 Z" fill="url(#iwingL)"/>
+              <path d="M110 78 Q142 44 164 18 Q154 52 142 66 Q126 80 108 86 Z" fill="url(#iwingR)"/>
+              <!-- Secondary wing layer -->
+              <path d="M58 82 Q34 64 18 46 Q26 68 38 78 Z" fill="#ff6600" opacity="0.5"/>
+              <path d="M112 82 Q136 64 152 46 Q144 68 132 78 Z" fill="#ff6600" opacity="0.5"/>
+              <!-- Wing fire tips -->
+              <path d="M6 18 Q0 10 4 4 Q10 14 12 22" fill="#ffee00" opacity="0.8"/>
+              <path d="M164 18 Q170 10 166 4 Q160 14 158 22" fill="#ffee00" opacity="0.8"/>
+              <!-- Body -->
+              <ellipse cx="85" cy="108" rx="26" ry="22" fill="url(#iBody)"/>
+              <ellipse cx="85" cy="94" rx="20" ry="18" fill="url(#iChest)"/>
+              <!-- Head -->
+              <circle cx="85" cy="68" r="20" fill="url(#iHead)"/>
+              <!-- Large fire crest -->
+              <path d="M75 50 Q68 30 73 12 Q79 34 76 48" fill="#ff2200" opacity="0.95"/>
+              <path d="M82 46 Q80 24 85 6 Q90 24 88 44" fill="#ff6600" opacity="0.95"/>
+              <path d="M89 46 Q92 26 96 10 Q93 28 91 46" fill="#ff2200" opacity="0.95"/>
+              <path d="M78 44 Q76 26 80 10" stroke="#ffee00" stroke-width="2" fill="none"/>
+              <path d="M85 44 Q85 22 85 6" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6"/>
+              <!-- Eyes — blazing -->
+              <circle cx="77" cy="65" r="5" fill="#ff4400"/>
+              <circle cx="93" cy="65" r="5" fill="#ff4400"/>
+              <circle cx="77" cy="65" r="2.5" fill="#ffee00"/>
+              <circle cx="93" cy="65" r="2.5" fill="#ffee00"/>
+              <circle cx="77" cy="65" r="1" fill="white"/>
+              <circle cx="93" cy="65" r="1" fill="white"/>
+              <!-- Beak -->
+              <path d="M80 75 L85 84 L90 75 Z" fill="#ffcc00"/>
+              <path d="M82 76 L85 82 L88 76" fill="#ff8800"/>
+              <!-- Talons -->
+              <path d="M76 130 Q70 140 64 148" stroke="#cc4400" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M94 130 Q100 140 106 148" stroke="#cc4400" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <!-- Tail feathers — long and dramatic -->
+              <path d="M72 128 Q58 148 52 162" stroke="url(#tailG)" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M80 130 Q76 152 74 164" stroke="url(#tailG2)" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M90 130 Q94 152 96 164" stroke="url(#tailG2)" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M98 128 Q112 148 118 162" stroke="url(#tailG)" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="iwingL" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ff1100" stop-opacity="0.4"/>
+                  <stop offset="50%" stop-color="#ff6600"/>
+                  <stop offset="100%" stop-color="#ff9900"/>
+                </linearGradient>
+                <linearGradient id="iwingR" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff1100" stop-opacity="0.4"/>
+                  <stop offset="50%" stop-color="#ff6600"/>
+                  <stop offset="100%" stop-color="#ff9900"/>
+                </linearGradient>
+                <radialGradient id="iBody" cx="50%" cy="35%">
+                  <stop offset="0%" stop-color="#dd2200"/>
+                  <stop offset="100%" stop-color="#550000"/>
+                </radialGradient>
+                <radialGradient id="iChest" cx="50%" cy="35%">
+                  <stop offset="0%" stop-color="#ff4400"/>
+                  <stop offset="100%" stop-color="#990000"/>
+                </radialGradient>
+                <radialGradient id="iHead" cx="42%" cy="35%">
+                  <stop offset="0%" stop-color="#ff6600"/>
+                  <stop offset="100%" stop-color="#bb1100"/>
+                </radialGradient>
+                <linearGradient id="tailG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff4400"/>
+                  <stop offset="100%" stop-color="#ffaa00" stop-opacity="0.3"/>
+                </linearGradient>
+                <linearGradient id="tailG2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff6600"/>
+                  <stop offset="100%" stop-color="#ffcc00" stop-opacity="0.3"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- STAGE 5: Legend — golden cosmic phoenix, ultimate form -->
+          <div class="px-legend">
+            <svg width="170" height="170" viewBox="0 0 170 170">
+              <!-- Cosmic aura ring -->
+              <circle cx="85" cy="85" r="82" fill="none" stroke="#ffd700" stroke-width="0.5" opacity="0.3"/>
+              <circle cx="85" cy="85" r="76" fill="none" stroke="#ffaa00" stroke-width="0.5" opacity="0.2"/>
+              <!-- Star sparkles -->
+              <circle cx="20" cy="20" r="2" fill="#ffee00" opacity="0.8"/>
+              <circle cx="150" cy="15" r="2" fill="#ffee00" opacity="0.7"/>
+              <circle cx="10" cy="90" r="1.5" fill="#fff" opacity="0.6"/>
+              <circle cx="160" cy="80" r="1.5" fill="#fff" opacity="0.6"/>
+              <circle cx="30" cy="150" r="2" fill="#ffcc00" opacity="0.7"/>
+              <circle cx="140" cy="145" r="2" fill="#ffcc00" opacity="0.8"/>
+              <!-- Massive golden wings -->
+              <path d="M60 76 Q22 36 2 8 Q14 46 26 62 Q42 78 62 86 Z" fill="url(#lgwingL)"/>
+              <path d="M110 76 Q148 36 168 8 Q156 46 144 62 Q128 78 108 86 Z" fill="url(#lgwingR)"/>
+              <!-- Golden wing glow layers -->
+              <path d="M58 80 Q28 56 10 28 Q20 62 36 76 Z" fill="#ffdd00" opacity="0.25"/>
+              <path d="M112 80 Q142 56 160 28 Q150 62 134 76 Z" fill="#ffdd00" opacity="0.25"/>
+              <!-- Wing feather details - gold veins -->
+              <path d="M2 8 Q14 32 22 52" stroke="#ffd700" stroke-width="1" fill="none" opacity="0.7"/>
+              <path d="M10 6 Q20 30 28 50" stroke="#ffee00" stroke-width="0.8" fill="none" opacity="0.5"/>
+              <path d="M168 8 Q156 32 148 52" stroke="#ffd700" stroke-width="1" fill="none" opacity="0.7"/>
+              <!-- Body — golden -->
+              <ellipse cx="85" cy="108" rx="26" ry="22" fill="url(#lgBody)"/>
+              <ellipse cx="85" cy="93" rx="20" ry="18" fill="url(#lgChest)"/>
+              <!-- Head -->
+              <circle cx="85" cy="66" r="21" fill="url(#lgHead)"/>
+              <!-- Golden crown crest -->
+              <path d="M72 48 Q64 24 70 6 Q77 30 74 46" fill="url(#crownF1)" opacity="0.98"/>
+              <path d="M80 44 Q78 18 85 2 Q92 18 90 42" fill="url(#crownF2)" opacity="0.98"/>
+              <path d="M88 44 Q96 22 102 8 Q96 28 90 46" fill="url(#crownF1)" opacity="0.98"/>
+              <!-- Crown stars -->
+              <circle cx="70" cy="8" r="2.5" fill="#fff" opacity="0.9"/>
+              <circle cx="85" cy="2" r="3" fill="#fff" opacity="0.95"/>
+              <circle cx="100" cy="8" r="2.5" fill="#fff" opacity="0.9"/>
+              <!-- Eyes — golden cosmic -->
+              <circle cx="77" cy="63" r="6" fill="#ffd700"/>
+              <circle cx="93" cy="63" r="6" fill="#ffd700"/>
+              <circle cx="77" cy="63" r="3" fill="#ffffff"/>
+              <circle cx="93" cy="63" r="3" fill="#ffffff"/>
+              <circle cx="78" cy="62" r="1.5" fill="#ffd700"/>
+              <circle cx="94" cy="62" r="1.5" fill="#ffd700"/>
+              <!-- Beak — gold -->
+              <path d="M80 74 L85 83 L90 74 Z" fill="#ffd700"/>
+              <!-- Talons -->
+              <path d="M75 130 Q68 142 62 152" stroke="#cc8800" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <path d="M95 130 Q102 142 108 152" stroke="#cc8800" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <!-- Long golden tail -->
+              <path d="M72 128 Q56 150 48 166" stroke="url(#lgTail1)" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M80 131 Q76 155 72 166" stroke="url(#lgTail2)" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M90 131 Q94 155 98 166" stroke="url(#lgTail2)" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M98 128 Q114 150 122 166" stroke="url(#lgTail1)" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="lgwingL" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffaa00" stop-opacity="0.3"/>
+                  <stop offset="50%" stop-color="#ffd700"/>
+                  <stop offset="100%" stop-color="#ffee88"/>
+                </linearGradient>
+                <linearGradient id="lgwingR" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffaa00" stop-opacity="0.3"/>
+                  <stop offset="50%" stop-color="#ffd700"/>
+                  <stop offset="100%" stop-color="#ffee88"/>
+                </linearGradient>
+                <radialGradient id="lgBody" cx="50%" cy="35%">
+                  <stop offset="0%" stop-color="#cc8800"/>
+                  <stop offset="100%" stop-color="#553300"/>
+                </radialGradient>
+                <radialGradient id="lgChest" cx="50%" cy="35%">
+                  <stop offset="0%" stop-color="#ffbb00"/>
+                  <stop offset="100%" stop-color="#884400"/>
+                </radialGradient>
+                <radialGradient id="lgHead" cx="42%" cy="35%">
+                  <stop offset="0%" stop-color="#ffc400"/>
+                  <stop offset="100%" stop-color="#884400"/>
+                </radialGradient>
+                <linearGradient id="crownF1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="40%" stop-color="#ffee00"/>
+                  <stop offset="100%" stop-color="#ff8800"/>
+                </linearGradient>
+                <linearGradient id="crownF2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="30%" stop-color="#fffaaa"/>
+                  <stop offset="100%" stop-color="#ffaa00"/>
+                </linearGradient>
+                <linearGradient id="lgTail1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffd700"/>
+                  <stop offset="100%" stop-color="#ffcc00" stop-opacity="0.2"/>
+                </linearGradient>
+                <linearGradient id="lgTail2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffee00"/>
+                  <stop offset="100%" stop-color="#ffaa00" stop-opacity="0.2"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
         <div class="phoenix-name" id="phoenixName">Ignis</div>
         <div class="phoenix-subtitle" id="phoenixSubtitle">Newborn spark · Needs your fuel</div>
@@ -2850,9 +3193,7 @@ let quoteIdx=Math.floor(Math.random()*QUOTES.length);
 function renderQuote(){
   const q=QUOTES[quoteIdx];
   const qt=document.getElementById('quoteText');
-  const qa=document.getElementById('quoteAuthor');
   if(qt){qt.style.opacity='0';setTimeout(()=>{qt.textContent='"'+q.text+'"';qt.style.transition='opacity 0.4s';qt.style.opacity='1';},200);}
-  if(qa)qa.textContent='— '+q.author;
 }
 function nextQuote(){quoteIdx=(quoteIdx+1)%QUOTES.length;renderQuote();}
 // Rotate quote every 30s
@@ -2879,7 +3220,12 @@ function loadFyre(){const saved=localStorage.getItem('risn_fyre');if(saved){try{
 function saveFyre(){localStorage.setItem('risn_fyre',JSON.stringify(fyreState));}
 function renderFyre(){
   const si=Math.min(fyreState.stage,5)-1,s=FYRE_STAGES[si],nextS=FYRE_STAGES[Math.min(si+1,4)];
-  const emojiEl=g('phoenixEmoji');if(emojiEl){emojiEl.textContent=s.emoji;emojiEl.classList.toggle('wounded',fyreState.health<40);}
+  // Update phoenix art — swap stage class on the art container
+  const artEl=g('phoenixArt');
+  if(artEl){
+    artEl.className='phoenix-art stage-'+Math.min(fyreState.stage,5);
+    if(fyreState.health<40)artEl.classList.add('wounded');
+  }
   if(g('phoenixStageLbl'))g('phoenixStageLbl').textContent='✦ STAGE '+fyreState.stage+' — '+s.name.toUpperCase();
   if(g('phoenixSubtitle'))g('phoenixSubtitle').textContent=fyreState.health<40?'⚠️ Wounded — complete quests to heal!':s.subtitle;
   const prevXP=si>0?FYRE_STAGES[si-1].xpNeeded:0,stageXP=s.xpNeeded-prevXP,userXP=Math.max(0,fyreState.xp-prevXP);
@@ -2939,8 +3285,12 @@ function checkStreakHealth(){
 function triggerPhoenixReact(emoji){const el=g('phoenixReact');if(!el)return;el.textContent=emoji;el.classList.remove('burst');void el.offsetWidth;el.classList.add('burst');}
 function showStageUp(){
   const s=FYRE_STAGES[Math.min(fyreState.stage,5)-1],su=g('stageUpOverlay');if(!su)return;
-  g('suPhoenix').textContent=s.emoji;g('suStageLabel').textContent='STAGE '+fyreState.stage+' REACHED';
-  g('suTitle').textContent=s.name+' Awakened';g('suSub').textContent='Your Phoenix rises to '+s.name+'. Your dedication fueled this.';
+  // Stage up overlay uses large emoji for dramatic reveal
+  const stageEmojis=['🐣','🔥','🦅','🔱','⭐'];
+  g('suPhoenix').textContent=stageEmojis[Math.min(fyreState.stage,5)-1];
+  g('suStageLabel').textContent='STAGE '+fyreState.stage+' REACHED';
+  g('suTitle').textContent=s.name+' Awakened';
+  g('suSub').textContent='Your Phoenix rises to '+s.name+'. Your dedication fueled this.';
   g('suReward').textContent=s.unlock;su.classList.add('show');spawnFlames();saveFyre();renderFyre();
 }
 async function loadPhoenixMsg(){
