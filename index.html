@@ -34,7 +34,7 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);font-famil
 
 /* ── SCREENS ── */
 .screens{flex:1;overflow:hidden;position:relative;}
-.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:clip;display:none;flex-direction:column;-webkit-overflow-scrolling:touch;padding-bottom:24px;z-index:0;}
+.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:none;flex-direction:column;-webkit-overflow-scrolling:touch;padding-bottom:24px;z-index:0;}
 .screen::-webkit-scrollbar{display:none;}
 .screen.active{display:flex;z-index:1;animation:screenIn 0.3s cubic-bezier(0.25,0.46,0.45,0.94);}
 @keyframes screenIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
@@ -930,111 +930,123 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 .vbb-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--gold);margin-bottom:2px;}
 .vbb-desc{font-size:10px;color:var(--text-muted);}
 
+
 /* ════════════════════════════════════
-   COMMUNITY FEED SCREEN
+   COMMUNITY SCREEN — MOBILE FIRST
 ════════════════════════════════════ */
-.community-header{padding:16px 20px 0;}
-.comm-title{font-family:'Instrument Serif',serif;font-size:30px;margin-bottom:2px;}
+/* Community screen uses its own flex layout — sticky top, scrollable bottom */
+#s-community{overflow:hidden !important;}
+#s-community.active{display:flex !important;flex-direction:column !important;}
+.comm-sticky{flex-shrink:0;background:var(--bg);z-index:2;padding-bottom:2px;}
+.comm-feed-zone{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:max(env(safe-area-inset-bottom,20px),20px);}
+.comm-feed-zone::-webkit-scrollbar{display:none;}
+.community-header{padding:14px 16px 10px;}
+.comm-title{font-family:'Instrument Serif',serif;font-size:28px;margin-bottom:2px;line-height:1.1;}
 .comm-title em{font-style:italic;color:var(--accent);}
-.comm-sub{font-size:11px;color:var(--text-muted);font-family:'Syne',sans-serif;margin-bottom:14px;}
-/* Post composer */
-.post-composer{margin:0 16px 12px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:12px 14px;}
-.pc-top{display:flex;gap:9px;align-items:flex-start;margin-bottom:8px;}
-.pc-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),rgba(100,255,180,0.3));display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;font-weight:800;color:var(--bg);font-family:'Syne',sans-serif;}
-.pc-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:9px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;resize:none;min-height:40px;max-height:90px;-webkit-appearance:none;transition:border-color 0.2s;}
-.pc-input:focus{border-color:rgba(100,255,180,0.3);}
+.comm-sub{font-size:11px;color:var(--text-muted);font-family:'Syne',sans-serif;}
+
+/* Live bar */
+.comm-live-bar{display:flex;align-items:center;gap:8px;margin:0 16px 10px;background:rgba(100,255,180,0.06);border:1px solid rgba(100,255,180,0.15);border-radius:12px;padding:8px 12px;}
+.clb-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pdot 2s infinite;}
+.clb-txt{font-size:11px;color:rgba(232,240,254,0.7);flex:1;min-width:0;}
+.clb-txt strong{color:var(--accent);}
+.clb-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:rgba(100,255,180,0.1);padding:3px 8px;border-radius:100px;flex-shrink:0;}
+
+/* Trending strip */
+.trending-strip{display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.trending-strip::-webkit-scrollbar{display:none;}
+.trend-chip{flex-shrink:0;background:var(--surface2);border:1px solid var(--border2);border-radius:100px;padding:6px 11px;font-size:10px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-dim);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.trend-chip:active{background:rgba(100,255,180,0.08);border-color:rgba(100,255,180,0.2);color:var(--accent);}
+
+/* Post Composer — compact single block */
+.post-composer{margin:0 16px 12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:10px 12px;transition:all 0.2s;}
+.pc-top{display:flex;gap:9px;align-items:center;}
+.pc-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),rgba(100,255,180,0.3));display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:800;color:var(--bg);font-family:'Syne',sans-serif;}
+.pc-input{flex:1;background:transparent;border:none;padding:0;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;resize:none;height:22px;max-height:80px;-webkit-appearance:none;line-height:1.6;overflow:hidden;}
 .pc-input::placeholder{color:var(--text-muted);}
-.pc-actions{display:flex;justify-content:space-between;align-items:center;gap:6px;}
+/* Collapsed state — actions hidden */
+.pc-expand{display:none;flex-direction:column;}
+.pc-expand.open{display:flex;}
+.pc-divider{height:1px;background:var(--border);margin:9px 0 8px;}
+/* Actions row — tags left, count+post right */
+.pc-actions{display:flex;align-items:center;gap:6px;}
 .pc-tags{display:flex;gap:5px;overflow-x:auto;flex:1;min-width:0;-webkit-overflow-scrolling:touch;}
 .pc-tags::-webkit-scrollbar{display:none;}
-.pc-tag{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:5px 9px;font-size:9px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.pc-tag{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:4px 9px;font-size:9px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
 .pc-tag.active{background:rgba(100,255,180,0.1);border-color:rgba(100,255,180,0.25);color:var(--accent);}
 .pc-tag:active{transform:scale(0.94);}
-.pc-post-btn{background:var(--accent);color:var(--bg);border:none;padding:8px 16px;border-radius:100px;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
+.pc-right{display:flex;align-items:center;gap:7px;flex-shrink:0;}
+.pc-char-count{font-size:9px;font-family:'Syne',sans-serif;color:var(--text-muted);white-space:nowrap;transition:color 0.2s;}
+.pc-char-count.near{color:var(--gold);}
+.pc-char-count.over{color:var(--red);}
+.pc-post-btn{background:var(--accent);color:var(--bg);border:none;padding:7px 16px;border-radius:100px;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
 .pc-post-btn:active{transform:scale(0.95);}
+
+/* Section labels */
+.comm-section-lbl{padding:0 16px 8px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
+.comm-section-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* Leaderboard */
+.comm-leaders{margin:0 16px 12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 14px;}
+.cl-row{display:flex;align-items:center;gap:10px;padding:4px 0;}
+.cl-row:not(:last-child){border-bottom:1px solid var(--border);margin-bottom:4px;}
+.cl-rank{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--text-muted);width:16px;text-align:center;flex-shrink:0;}
+.cl-rank.gold{color:var(--gold);}
+.cl-rank.silver{color:rgba(200,200,220,0.7);}
+.cl-rank.bronze{color:rgba(205,127,50,0.8);}
+.cl-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--bg);flex-shrink:0;}
+.cl-info{flex:1;min-width:0;}
+.cl-name{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px;}
+.cl-streak{font-size:10px;color:var(--text-muted);}
+.cl-score{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--accent);flex-shrink:0;}
+
 /* Feed filters */
-.feed-filters{display:flex;gap:7px;padding:0 16px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.feed-filters{display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .feed-filters::-webkit-scrollbar{display:none;}
 .ff-btn{flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:6px 12px;font-size:10px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
 .ff-btn.active{background:rgba(100,255,180,0.1);border-color:rgba(100,255,180,0.25);color:var(--accent);}
 .ff-btn:active{transform:scale(0.95);}
-/* Post cards */
+
+/* Feed + post cards */
 .feed{padding:0 16px;display:flex;flex-direction:column;gap:10px;}
-.post-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:14px;transition:border-color 0.2s;}
-.post-card:active{border-color:rgba(100,255,180,0.18);}
-.post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.post-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--bg);font-family:'Syne',sans-serif;flex-shrink:0;}
+.post-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:13px;transition:border-color 0.2s;}
+.post-header{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.post-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--bg);font-family:'Syne',sans-serif;flex-shrink:0;}
 .post-user-info{flex:1;min-width:0;}
-.post-username{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.post-username{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .post-meta{font-size:10px;color:var(--text-muted);}
-.post-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:0.06em;white-space:nowrap;flex-shrink:0;}
-.post-body{font-size:13px;line-height:1.65;color:rgba(232,240,254,0.82);margin-bottom:10px;}
-/* Post stats card */
-.post-stats{display:flex;gap:7px;margin-bottom:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.post-stats::-webkit-scrollbar{display:none;}
-.pstat{flex-shrink:0;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:9px 11px;text-align:center;min-width:60px;}
-.pstat-val{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;margin-bottom:1px;}
-.pstat-lbl{font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
-/* Post actions */
-.post-actions{display:flex;gap:6px;align-items:center;}
-.react-btn{display:flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:6px 11px;cursor:pointer;transition:all 0.2s;font-size:13px;}
+.post-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;padding:3px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.post-body{font-size:12px;line-height:1.65;color:rgba(232,240,254,0.82);margin-bottom:10px;}
+.post-win-banner{background:linear-gradient(135deg,rgba(100,255,180,0.08),rgba(100,255,180,0.03));border:1px solid rgba(100,255,180,0.15);border-radius:10px;padding:8px 11px;margin-bottom:10px;display:flex;align-items:center;gap:9px;}
+.pwb-icon{font-size:16px;flex-shrink:0;}
+.pwb-txt{font-size:11px;color:rgba(232,240,254,0.8);line-height:1.5;}
+.pwb-txt strong{color:var(--accent);}
+.post-stats{display:flex;gap:6px;margin-bottom:10px;}
+.pstat{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 6px;text-align:center;}
+.pstat-val{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;margin-bottom:1px;}
+.pstat-lbl{font-size:8px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);}
+.post-actions{display:flex;gap:5px;align-items:center;}
+.react-btn{display:flex;align-items:center;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:6px 10px;cursor:pointer;transition:all 0.2s;font-size:12px;}
 .react-btn:active{transform:scale(0.93);}
 .react-btn.reacted{background:rgba(100,255,180,0.1);border-color:rgba(100,255,180,0.25);}
 .react-count{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text-dim);}
 .react-btn.reacted .react-count{color:var(--accent);}
-.comment-btn{display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;padding:6px 8px;transition:all 0.2s;}
-.comment-btn:active{transform:scale(0.93);}
-.share-post-btn{margin-left:auto;background:none;border:none;color:var(--text-muted);font-size:16px;cursor:pointer;padding:6px;}
-/* Streak / challenge win banner */
-.post-win-banner{background:linear-gradient(135deg,rgba(100,255,180,0.1),rgba(100,255,180,0.04));border:1px solid rgba(100,255,180,0.2);border-radius:11px;padding:9px 11px;margin-bottom:10px;display:flex;align-items:center;gap:9px;}
-.pwb-icon{font-size:18px;}
-.pwb-txt{font-size:12px;color:rgba(232,240,254,0.8);line-height:1.5;}
-.pwb-txt strong{color:var(--accent);}
-/* Online indicator */
-.online-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 2s infinite;flex-shrink:0;}
-/* Community live stats bar */
-.comm-live-bar{display:flex;align-items:center;gap:10px;margin:0 16px 12px;background:rgba(100,255,180,0.06);border:1px solid rgba(100,255,180,0.15);border-radius:13px;padding:9px 12px;}
-.clb-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pdot 2s infinite;}
-.clb-txt{font-size:11px;color:rgba(232,240,254,0.7);flex:1;}
-.clb-txt strong{color:var(--accent);}
-.clb-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(100,255,180,0.1);padding:3px 9px;border-radius:100px;}
-/* Trending strip */
-.trending-strip{padding:0 16px 10px;display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.trending-strip::-webkit-scrollbar{display:none;}
-.trend-chip{flex-shrink:0;background:var(--surface2);border:1px solid var(--border2);border-radius:100px;padding:6px 11px;font-size:10px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text-dim);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.trend-chip:active{transform:scale(0.94);background:rgba(100,255,180,0.08);border-color:rgba(100,255,180,0.2);color:var(--accent);}
-/* Comment section */
+.comment-btn{display:flex;align-items:center;gap:4px;background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:6px 8px;transition:all 0.2s;}
+.share-post-btn{margin-left:auto;background:none;border:none;color:var(--text-muted);font-size:15px;cursor:pointer;padding:6px;}
+.online-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pdot 2s infinite;flex-shrink:0;}
+
+/* Comments */
 .comments-wrap{display:none;border-top:1px solid var(--border);margin-top:10px;padding-top:10px;}
 .comments-wrap.open{display:block;animation:fadeUp 0.25s ease;}
-.comment-item{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;}
-.ci-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--bg);flex-shrink:0;}
+.comment-item{display:flex;gap:8px;margin-bottom:9px;align-items:flex-start;}
+.ci-avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--bg);flex-shrink:0;}
 .ci-body{flex:1;background:var(--surface2);border-radius:10px;padding:7px 10px;}
 .ci-name{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--text-dim);margin-bottom:2px;}
-.ci-text{font-size:12px;line-height:1.55;color:rgba(232,240,254,0.7);}
+.ci-text{font-size:11px;line-height:1.5;color:rgba(232,240,254,0.7);}
 .comment-input-row{display:flex;gap:7px;margin-top:6px;}
 .ci-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;-webkit-appearance:none;}
 .ci-input::placeholder{color:var(--text-muted);}
-.ci-send{width:34px;height:34px;border-radius:50%;background:var(--accent);border:none;color:var(--bg);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
-/* Char counter */
-.pc-char-count{font-size:9px;font-family:'Syne',sans-serif;color:var(--text-muted);text-align:right;margin-top:6px;transition:color 0.2s;}
-.pc-char-count.near{color:var(--gold);}
-.pc-char-count.over{color:var(--red);}
-/* Community leaderboard */
-.comm-leaders{margin:0 16px 12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 14px;}
-.cl-title{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
-.cl-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.cl-rank{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--text-muted);width:18px;text-align:center;flex-shrink:0;}
-.cl-rank.gold{color:var(--gold);}
-.cl-rank.silver{color:rgba(200,200,220,0.7);}
-.cl-rank.bronze{color:rgba(205,127,50,0.8);}
-.cl-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--bg);flex-shrink:0;}
-.cl-info{flex:1;min-width:0;}
-.cl-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text);margin-bottom:1px;}
-.cl-streak{font-size:9px;color:var(--text-muted);}
-.cl-score{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--accent);flex-shrink:0;}
-/* Section label in community */
-.comm-section-lbl{padding:0 16px 8px;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
-.comm-section-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+.ci-send{width:32px;height:32px;border-radius:50%;background:var(--accent);border:none;color:var(--bg);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
 .toast{position:absolute;bottom:76px;left:18px;right:18px;background:var(--surface2);border:1px solid rgba(100,255,180,0.18);border-radius:15px;padding:11px 14px;z-index:100;display:flex;gap:9px;align-items:flex-start;transform:translateY(14px);opacity:0;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
 .toast-lbl{font-size:8px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2px;}
@@ -1501,38 +1513,34 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 .ember-balance{display:flex;align-items:center;gap:6px;background:rgba(255,159,67,0.1);border:1px solid rgba(255,159,67,0.25);border-radius:100px;padding:6px 14px;cursor:pointer;transition:all 0.2s;}
 .ember-balance:active{transform:scale(0.95);}
 .ember-count{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--orange);}
-.phoenix-stage-card{margin:10px 16px 0;background:linear-gradient(160deg,#0f1a10 0%,#1a0a00 100%);border:1px solid rgba(255,159,67,0.2);border-radius:24px;padding:14px 18px 16px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;}
+.phoenix-stage-card{margin:10px 16px 0;background:linear-gradient(160deg,#0f1a10 0%,#1a0a00 100%);border:1px solid rgba(255,159,67,0.2);border-radius:24px;padding:14px 18px 16px;position:relative;overflow:visible;display:flex;flex-direction:column;align-items:center;}
 .psc-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 85%,rgba(255,100,0,0.18) 0%,transparent 65%);pointer-events:none;animation:glowPulse 3s ease-in-out infinite;}
 @keyframes glowPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
 @keyframes phoenixHover{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-8px) scale(1.04);}}
 .phoenix-stage-lbl{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;z-index:1;}
 /* ─── PHOENIX VISUAL ART SYSTEM ─── */
-.phoenix-art{position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;z-index:1;margin:2px 0;flex-shrink:0;}
+.phoenix-art{position:relative;width:140px;height:140px;min-width:140px;min-height:140px;display:flex;align-items:center;justify-content:center;z-index:1;margin:4px 0;flex-shrink:0;}
 
-/* Stage 1 — Egg (small, pulsing, cracked) */
-.px-egg{display:none;align-items:center;justify-content:center;}
+/* All stage containers — hidden by default, shown by JS inline style */
+.px-egg{display:none;align-items:center;justify-content:center;width:140px;height:140px;}
 .px-egg svg{animation:eggPulse 2s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(255,140,0,0.6));}
 @keyframes eggPulse{0%,100%{transform:scale(1) rotate(-2deg);}50%{transform:scale(1.08) rotate(2deg);}}
 
-/* Stage 2 — Hatchling (small bird shape, orange) */
-.px-hatchling{display:none;align-items:center;justify-content:center;}
+.px-hatchling{display:none;align-items:center;justify-content:center;width:140px;height:140px;}
 .px-hatchling svg{animation:phoenixHover 2.5s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(255,120,0,0.8));}
 
-/* Stage 3 — Juvenile (bigger, wings spread a bit) */
-.px-juvenile{display:none;align-items:center;justify-content:center;}
+.px-juvenile{display:none;align-items:center;justify-content:center;width:140px;height:140px;}
 .px-juvenile svg{animation:phoenixHover 2.2s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(255,80,0,0.9)) drop-shadow(0 0 40px rgba(255,160,0,0.4));}
 
-/* Stage 4 — Inferno (full size, blazing) */
-.px-inferno{display:none;align-items:center;justify-content:center;}
+.px-inferno{display:none;align-items:center;justify-content:center;width:140px;height:140px;}
 .px-inferno svg{animation:infernoFloat 2s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(255,40,0,1)) drop-shadow(0 0 56px rgba(255,120,0,0.6));}
 @keyframes infernoFloat{0%,100%{transform:translateY(0) scale(1) rotate(-1deg);}33%{transform:translateY(-10px) scale(1.06) rotate(1deg);}66%{transform:translateY(-5px) scale(1.03) rotate(-0.5deg);}}
 
-/* Stage 5 — Legend (massive, golden, cosmic) */
-.px-legend{display:none;align-items:center;justify-content:center;}
+.px-legend{display:none;align-items:center;justify-content:center;width:140px;height:140px;}
 .px-legend svg{animation:legendFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 32px rgba(255,210,0,1)) drop-shadow(0 0 64px rgba(255,150,0,0.7)) drop-shadow(0 0 96px rgba(255,80,0,0.4));}
 @keyframes legendFloat{0%,100%{transform:translateY(0) scale(1);}25%{transform:translateY(-12px) scale(1.04) rotate(1deg);}75%{transform:translateY(-6px) scale(1.02) rotate(-1deg);}}
 
-/* Active stage shown via JS class on .phoenix-art */
+/* CSS fallback — also handled by JS inline styles */
 .phoenix-art.stage-1 .px-egg{display:flex;}
 .phoenix-art.stage-2 .px-hatchling{display:flex;}
 .phoenix-art.stage-3 .px-juvenile{display:flex;}
@@ -2326,82 +2334,92 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
       </div>
     </div><!-- /s-rise -->
     <!-- ══════════════════ COMMUNITY ══════════════════ -->
-    <div class="screen" id="s-community">
+    <div class="screen" id="s-community" style="overflow:hidden;display:none;flex-direction:column;">
 
-      <!-- Header -->
-      <div class="community-header">
-        <div class="comm-title">Rise <em>Together</em></div>
-        <div class="comm-sub">Share wins · React · Inspire the community</div>
-      </div>
-
-      <!-- Live active bar -->
-      <div class="comm-live-bar">
-        <div class="clb-dot"></div>
-        <div class="clb-txt"><strong id="liveCount">847</strong> Risers active right now</div>
-        <div class="clb-badge">🔥 LIVE</div>
-      </div>
-
-      <!-- Trending topics -->
-      <div class="trending-strip">
-        <div class="trend-chip" onclick="insertTrend('30-Day Rise Challenge')">🏆 #30DayRise</div>
-        <div class="trend-chip" onclick="insertTrend('new PR today')">💪 #NewPR</div>
-        <div class="trend-chip" onclick="insertTrend('hitting my protein goal')">🍗 #ProteinGoal</div>
-        <div class="trend-chip" onclick="insertTrend('morning routine locked in')">🌅 #MorningRoutine</div>
-        <div class="trend-chip" onclick="insertTrend('mental health win')">🧘 #MindsetWin</div>
-      </div>
-
-      <!-- Post Composer -->
-      <div class="post-composer">
-        <div class="pc-top">
-          <div class="pc-avatar" id="communityAvatar">R</div>
-          <textarea class="pc-input" id="postInput" placeholder="Share a win, a breakthrough, a milestone..." rows="2"
-            oninput="handlePostInput(this)"></textarea>
+      <!-- ── STICKY TOP ZONE — never scrolls ── -->
+      <div class="comm-sticky">
+        <!-- Header -->
+        <div class="community-header">
+          <div class="comm-title">Rise <em>Together</em></div>
+          <div class="comm-sub">Share wins · React · Inspire the community</div>
         </div>
-        <div class="pc-char-count" id="charCount">0 / 280</div>
-        <div class="pc-actions">
-          <div class="pc-tags">
-            <div class="pc-tag active" id="ptag-win" onclick="selectPostTag(this,'win')">🏆 Win</div>
-            <div class="pc-tag" id="ptag-workout" onclick="selectPostTag(this,'workout')">💪 Workout</div>
-            <div class="pc-tag" id="ptag-nutrition" onclick="selectPostTag(this,'nutrition')">🍎 Nutrition</div>
-            <div class="pc-tag" id="ptag-mindset" onclick="selectPostTag(this,'mindset')">🧘 Mindset</div>
+
+        <!-- Live active bar -->
+        <div class="comm-live-bar">
+          <div class="clb-dot"></div>
+          <div class="clb-txt"><strong id="liveCount">847</strong> Risers active right now</div>
+          <div class="clb-badge">🔥 LIVE</div>
+        </div>
+
+        <!-- Trending topics -->
+        <div class="trending-strip">
+          <div class="trend-chip" onclick="insertTrend('30-Day Rise Challenge')">🏆 #30DayRise</div>
+          <div class="trend-chip" onclick="insertTrend('new PR today')">💪 #NewPR</div>
+          <div class="trend-chip" onclick="insertTrend('hitting my protein goal')">🍗 #ProteinGoal</div>
+          <div class="trend-chip" onclick="insertTrend('morning routine locked in')">🌅 #MorningRoutine</div>
+          <div class="trend-chip" onclick="insertTrend('mental health win')">🧘 #MindsetWin</div>
+        </div>
+
+        <!-- Post Composer — collapsed by default -->
+        <div class="post-composer" id="postComposer">
+          <div class="pc-top">
+            <div class="pc-avatar" id="communityAvatar">R</div>
+            <textarea class="pc-input" id="postInput" placeholder="Share a win, a breakthrough, a milestone..." rows="1"
+              oninput="handlePostInput(this)" onfocus="expandComposer()" onblur="collapseComposer()"></textarea>
           </div>
-          <button class="pc-post-btn" id="postBtn" onclick="submitPost()">Post</button>
+          <div class="pc-expand" id="pcExpand">
+            <div class="pc-divider"></div>
+            <div class="pc-actions">
+              <div class="pc-tags">
+                <div class="pc-tag active" id="ptag-win" onclick="selectPostTag(this,'win')">🏆 Win</div>
+                <div class="pc-tag" id="ptag-workout" onclick="selectPostTag(this,'workout')">💪 Workout</div>
+                <div class="pc-tag" id="ptag-nutrition" onclick="selectPostTag(this,'nutrition')">🍎 Nutrition</div>
+                <div class="pc-tag" id="ptag-mindset" onclick="selectPostTag(this,'mindset')">🧘 Mindset</div>
+              </div>
+              <div class="pc-right">
+                <span class="pc-char-count" id="charCount">0/280</span>
+                <button class="pc-post-btn" id="postBtn" onclick="submitPost()">Post</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </div><!-- /comm-sticky -->
 
-      <!-- This Week Leaderboard -->
-      <div class="comm-section-lbl">This Week's Top Risers</div>
-      <div class="comm-leaders">
-        <div class="cl-row">
-          <div class="cl-rank gold">1</div>
-          <div class="cl-av" style="background:linear-gradient(135deg,#ff9f43,#ff6b6b)">D</div>
-          <div class="cl-info"><div class="cl-name">Devon M.</div><div class="cl-streak">🔥 45-day streak</div></div>
-          <div class="cl-score">98</div>
+      <!-- ── SCROLLABLE FEED ZONE ── -->
+      <div class="comm-feed-zone">
+        <!-- This Week Leaderboard -->
+        <div class="comm-section-lbl">This Week's Top Risers</div>
+        <div class="comm-leaders">
+          <div class="cl-row">
+            <div class="cl-rank gold">1</div>
+            <div class="cl-av" style="background:linear-gradient(135deg,#ff9f43,#ff6b6b)">D</div>
+            <div class="cl-info"><div class="cl-name">Devon M.</div><div class="cl-streak">🔥 45-day streak</div></div>
+            <div class="cl-score">98</div>
+          </div>
+          <div class="cl-row">
+            <div class="cl-rank silver">2</div>
+            <div class="cl-av" style="background:linear-gradient(135deg,#ff9f43,#ffd166)">M</div>
+            <div class="cl-info"><div class="cl-name">Marcus R.</div><div class="cl-streak">🔥 28-day streak</div></div>
+            <div class="cl-score">91</div>
+          </div>
+          <div class="cl-row">
+            <div class="cl-rank bronze">3</div>
+            <div class="cl-av" style="background:linear-gradient(135deg,#74b9ff,#a29bfe)">J</div>
+            <div class="cl-info"><div class="cl-name">Jamie K.</div><div class="cl-streak">🔥 14-day streak</div></div>
+            <div class="cl-score">87</div>
+          </div>
         </div>
-        <div class="cl-row">
-          <div class="cl-rank silver">2</div>
-          <div class="cl-av" style="background:linear-gradient(135deg,#ff9f43,#ffd166)">M</div>
-          <div class="cl-info"><div class="cl-name">Marcus R.</div><div class="cl-streak">🔥 28-day streak</div></div>
-          <div class="cl-score">91</div>
-        </div>
-        <div class="cl-row">
-          <div class="cl-rank bronze">3</div>
-          <div class="cl-av" style="background:linear-gradient(135deg,#74b9ff,#a29bfe)">J</div>
-          <div class="cl-info"><div class="cl-name">Jamie K.</div><div class="cl-streak">🔥 14-day streak</div></div>
-          <div class="cl-score">87</div>
-        </div>
-      </div>
 
-      <!-- Feed filters -->
-      <div class="comm-section-lbl">Community Feed</div>
-      <div class="feed-filters">
-        <div class="ff-btn active" onclick="filterFeed(this,'all')">🔥 All</div>
-        <div class="ff-btn" onclick="filterFeed(this,'wins')">🏆 Wins</div>
-        <div class="ff-btn" onclick="filterFeed(this,'workouts')">💪 Workouts</div>
-        <div class="ff-btn" onclick="filterFeed(this,'challenges')">⚡ Challenges</div>
-        <div class="ff-btn" onclick="filterFeed(this,'nutrition')">🍎 Nutrition</div>
-        <div class="ff-btn" onclick="filterFeed(this,'mindset')">🧘 Mindset</div>
-      </div>
+        <!-- Feed filters -->
+        <div class="comm-section-lbl">Community Feed</div>
+        <div class="feed-filters">
+          <div class="ff-btn active" onclick="filterFeed(this,'all')">🔥 All</div>
+          <div class="ff-btn" onclick="filterFeed(this,'wins')">🏆 Wins</div>
+          <div class="ff-btn" onclick="filterFeed(this,'workouts')">💪 Workouts</div>
+          <div class="ff-btn" onclick="filterFeed(this,'challenges')">⚡ Challenges</div>
+          <div class="ff-btn" onclick="filterFeed(this,'nutrition')">🍎 Nutrition</div>
+          <div class="ff-btn" onclick="filterFeed(this,'mindset')">🧘 Mindset</div>
+        </div>
 
       <!-- Feed -->
       <div class="feed" id="communityFeed">
@@ -2550,6 +2568,7 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 
       </div>
       <div style="height:24px"></div>
+      </div><!-- /comm-feed-zone -->
     </div><!-- /s-community -->
 
   </div><!-- /screens -->
@@ -3371,14 +3390,17 @@ tick();setInterval(tick,30000);
 
 // ── BOTTOM TABS ──
 function switchTab(t){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>{
+    s.classList.remove('active');
+    s.scrollTop=0; // reset scroll on all screens
+  });
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById(`s-${t}`).classList.add('active');
+  const screen=document.getElementById(`s-${t}`);
+  if(screen){screen.classList.add('active');screen.scrollTop=0;}
   const nav=document.getElementById(`nav-${t}`);
   if(nav)nav.classList.add('active');
   if(t==='home')setTimeout(initHomeAnimations,60);
-  // Ensure Fyre renders phoenix correctly every time tab opens
-  if(t==='fyre')setTimeout(()=>{if(typeof renderFyre==='function')renderFyre();},60);
+  if(t==='fyre')setTimeout(()=>{if(typeof renderFyre==='function')renderFyre();},120);
 }
 
 // ── COACH BADGE ──
@@ -4829,15 +4851,31 @@ let fyreState={xp:0,stage:1,emberPoints:0,health:100,streak:0,lastCheckin:null,q
 function isToday(d){if(!d)return false;return new Date(d).toDateString()===new Date().toDateString();}
 function g(id){return document.getElementById(id);}
 function loadFyre(){const saved=localStorage.getItem('risn_fyre');if(saved){try{fyreState={...fyreState,...JSON.parse(saved)};}catch(e){}}checkStreakHealth();renderFyre();spawnFlames();loadPhoenixMsg();}
-loadFyre();
+// Wait for DOM to be fully ready before loading Fyre
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',loadFyre);
+} else {
+  loadFyre();
+}
 function saveFyre(){localStorage.setItem('risn_fyre',JSON.stringify(fyreState));}
 function renderFyre(){
   const si=Math.min(fyreState.stage,5)-1,s=FYRE_STAGES[si],nextS=FYRE_STAGES[Math.min(si+1,4)];
-  // Update phoenix art — swap stage class on the art container
+
+  // ── PHOENIX ART: directly show the correct stage div ──
+  // Don't rely on CSS class cascade (unreliable in Android WebView on display:none parents)
   const artEl=g('phoenixArt');
   if(artEl){
     artEl.className='phoenix-art stage-'+Math.min(fyreState.stage,5);
     if(fyreState.health<40)artEl.classList.add('wounded');
+    // Force-show the right stage div with inline style
+    const stageMap={1:'px-egg',2:'px-hatchling',3:'px-juvenile',4:'px-inferno',5:'px-legend'};
+    const activeStage=Math.min(fyreState.stage,5);
+    for(let i=1;i<=5;i++){
+      const divs=artEl.getElementsByClassName(stageMap[i]);
+      if(divs.length>0){
+        divs[0].style.display = (i===activeStage) ? 'flex' : 'none';
+      }
+    }
   }
   if(g('phoenixStageLbl'))g('phoenixStageLbl').textContent='✦ STAGE '+fyreState.stage+' — '+s.name.toUpperCase();
   if(g('phoenixSubtitle'))g('phoenixSubtitle').textContent=fyreState.health<40?'⚠️ Wounded — complete quests to heal!':s.subtitle;
@@ -5007,14 +5045,36 @@ function selectPostTag(el, tag){
 }
 
 // Character counter + auto-resize
+function expandComposer(){
+  const exp=document.getElementById('pcExpand');
+  const inp=document.getElementById('postInput');
+  if(exp)exp.classList.add('open');
+  if(inp){inp.style.height='auto';inp.style.maxHeight='80px';}
+}
+
+function collapseComposer(){
+  // Only collapse if the textarea is empty
+  const inp=document.getElementById('postInput');
+  const exp=document.getElementById('pcExpand');
+  if(inp&&inp.value.trim()===''){
+    // Small delay so tap on Post button registers first
+    setTimeout(()=>{
+      if(inp.value.trim()===''){
+        if(exp)exp.classList.remove('open');
+        inp.style.height='22px';
+      }
+    },200);
+  }
+}
+
 function handlePostInput(el){
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-  const len = el.value.length;
-  const counter = document.getElementById('charCount');
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,80)+'px';
+  const len=el.value.length;
+  const counter=document.getElementById('charCount');
   if(counter){
-    counter.textContent = `${len} / 280`;
-    counter.className = 'pc-char-count' + (len > 260 ? ' over' : len > 220 ? ' near' : '');
+    counter.textContent=`${len}/280`;
+    counter.className='pc-char-count'+(len>260?' over':len>220?' near':'');
   }
 }
 
@@ -5096,9 +5156,12 @@ function submitPost(){
   const feed = document.getElementById('communityFeed');
   feed.insertBefore(buildPostElement(post), feed.firstChild);
   input.value = '';
-  input.style.height = 'auto';
+  input.style.height = '22px';
   const counter = document.getElementById('charCount');
-  if(counter){ counter.textContent = '0 / 280'; counter.className = 'pc-char-count'; }
+  if(counter){ counter.textContent = '0/280'; counter.className = 'pc-char-count'; }
+  // Collapse composer
+  const exp=document.getElementById('pcExpand');
+  if(exp)exp.classList.remove('open');
   // Award XP + embers for posting
   if(typeof gainXP === 'function') gainXP(20, document.getElementById('postBtn'));
   showToast('Posted! Your community is rising with you 🔥');
