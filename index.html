@@ -3076,9 +3076,9 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
       </div>
     </div>
 
-    <!-- ── STEP 2: DETOUR — Acknowledging the Starting Point ── -->
+    <!-- ── STEP 2: DETOUR — Starting Point + custom answer ── -->
     <div class="ob-step" id="ob-step-2">
-      <div class="ob-hero" style="padding-top:40px;text-align:left;padding-bottom:12px">
+      <div class="ob-hero" style="padding-top:36px;padding-bottom:10px">
         <div class="ob-headline">Everyone has a<br><em>starting point.</em></div>
         <div class="ob-sub" style="padding:0">What brought you here today?</div>
       </div>
@@ -3092,13 +3092,25 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
           <div class="ob-detour-card" onclick="selectDetour(this,'detour')">
             <div class="ob-detour-route">The 5-Year Detour Route</div>
             <div class="ob-detour-name">I lost my discipline and need to rebuild.</div>
-            <div class="ob-detour-desc">Life happened. That's not failure — it's the setup for a better comeback. The system is still in you.</div>
+            <div class="ob-detour-desc">Life happened. That's not failure — it's the setup for a better comeback.</div>
           </div>
           <div class="ob-detour-card" onclick="selectDetour(this,'plateau')">
             <div class="ob-detour-route">The Locked-In Route</div>
             <div class="ob-detour-name">I hit a plateau and need the ultimate system.</div>
-            <div class="ob-detour-desc">You're already in the game. Now you need the edge — the data, the tactics, the precision to break through.</div>
+            <div class="ob-detour-desc">You're already in the game. Now you need the edge to break through.</div>
           </div>
+          <div class="ob-detour-card" onclick="selectDetour(this,'other')">
+            <div class="ob-detour-route">My Own Route</div>
+            <div class="ob-detour-name">Something else brought me here.</div>
+            <div class="ob-detour-desc">Tell us in your own words below.</div>
+          </div>
+        </div>
+        <!-- Custom answer — shows when "other" selected -->
+        <div id="obDetourCustomWrap" style="display:none;margin-top:12px">
+          <span class="ob-label">Tell us what brought you here</span>
+          <textarea class="ob-input" id="obDetourCustom" placeholder="e.g. I want to run my first 5K, I just had a health scare..." rows="3"
+            style="resize:none;min-height:80px;line-height:1.6"
+            oninput="obData.detourCustom=this.value.trim();checkDetourNext()"></textarea>
         </div>
       </div>
       <div class="ob-footer">
@@ -3107,9 +3119,9 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
       </div>
     </div>
 
-    <!-- ── STEP 3: ANCHOR — Locking in the Why ── -->
+    <!-- ── STEP 3: ANCHOR — Deep Why + custom answer ── -->
     <div class="ob-step" id="ob-step-3">
-      <div class="ob-hero" style="padding-top:40px;text-align:left;padding-bottom:12px">
+      <div class="ob-hero" style="padding-top:36px;padding-bottom:10px">
         <div class="ob-headline">Motivation burns out.<br><em>Discipline needs an Anchor.</em></div>
         <div class="ob-sub" style="padding:0">Why are you <em style="font-style:italic;color:var(--gold)">really</em> doing this?</div>
       </div>
@@ -3125,15 +3137,26 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
           </div>
           <div class="ob-anchor-card" onclick="selectAnchor(this,'prove')">
             <div class="ob-anchor-ico">⚔️</div>
-            <div><div class="ob-anchor-name">To prove to myself that I can.</div><div class="ob-anchor-desc">The only person you need to beat is the version of you that quit before.</div></div>
+            <div><div class="ob-anchor-name">To prove to myself that I can.</div><div class="ob-anchor-desc">The only person you need to beat is who you were yesterday.</div></div>
+          </div>
+          <div class="ob-anchor-card" onclick="selectAnchor(this,'custom')">
+            <div class="ob-anchor-ico">✍️</div>
+            <div><div class="ob-anchor-name">My reason is personal — I'll write it myself.</div><div class="ob-anchor-desc">The most powerful anchor is the one only you know.</div></div>
           </div>
         </div>
-        <!-- Anchor Photo Prompt — slides in after selection -->
-        <div class="ob-photo-prompt" id="obPhotoPrompt">
-          <div class="ob-photo-lbl">📸 Upload Your Mental Armor</div>
-          <div class="ob-photo-desc">A photo of your kids, your family, or your ultimate goal physique. This becomes your lock screen motivation — shown to you every morning before you have a chance to make excuses.</div>
+        <!-- Custom anchor input — always visible once any card is selected -->
+        <div id="obAnchorCustomWrap" style="display:none;margin-top:12px">
+          <span class="ob-label" id="obAnchorCustomLbl">Write your personal anchor statement</span>
+          <textarea class="ob-input" id="obAnchorCustom" placeholder="e.g. My daughter deserves a dad who shows up strong every day." rows="3"
+            style="resize:none;min-height:80px;line-height:1.6"
+            oninput="obData.anchorStatement=this.value.trim()"></textarea>
+        </div>
+        <!-- Photo prompt -->
+        <div class="ob-photo-prompt" id="obPhotoPrompt" style="margin-top:12px">
+          <div class="ob-photo-lbl">📸 Upload Your Mental Armor (Optional)</div>
+          <div class="ob-photo-desc">A photo of your family, your goal physique, or anything that makes quitting impossible. Shown to you every morning before you have a chance to make excuses.</div>
           <input type="file" id="obPhotoInput" accept="image/*" style="display:none" onchange="handleAnchorPhoto(this)">
-          <button class="ob-photo-btn" onclick="document.getElementById('obPhotoInput').click()">📷 Add Anchor Photo (Optional)</button>
+          <button class="ob-photo-btn" onclick="document.getElementById('obPhotoInput').click()">📷 Add Anchor Photo</button>
           <img id="obPhotoPreview" class="ob-photo-preview" alt="Your anchor">
         </div>
       </div>
@@ -3143,32 +3166,40 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
       </div>
     </div>
 
-    <!-- ── STEP 4: MANDATE — The Zero Ego Contract ── -->
-    <div class="ob-step ob-mandate-screen" id="ob-step-4">
-      <div class="ob-mandate-hero">
-        <div class="ob-headline" style="text-align:center;font-size:28px">The Risn<br><em>Mandate</em></div>
-        <div class="ob-mandate-sub">This isn't an app. It's a system. Every system has rules.</div>
-      </div>
-      <div class="ob-mandate-items">
-        <div class="ob-mandate-item">
-          <div class="ob-mandate-bullet">I</div>
-          <div class="ob-mandate-txt">You will <strong>leave your ego at the door.</strong> The weight on the bar is irrelevant. The math is everything.</div>
+    <!-- ── STEP 4: MANDATE — Zero Ego Contract ── -->
+    <div class="ob-step" id="ob-step-4" style="justify-content:space-between">
+      <div>
+        <div class="ob-mandate-hero">
+          <div class="ob-headline" style="text-align:center;font-size:28px">The Risn<br><em>Mandate</em></div>
+          <div class="ob-mandate-sub">This isn't an app. It's a system. Every system has rules.</div>
         </div>
-        <div class="ob-mandate-item">
-          <div class="ob-mandate-bullet">II</div>
-          <div class="ob-mandate-txt">You will be <strong>100% honest with the math.</strong> Unlogged calories are a lie you tell yourself — not the app.</div>
-        </div>
-        <div class="ob-mandate-item">
-          <div class="ob-mandate-bullet">III</div>
-          <div class="ob-mandate-txt">You will <strong>leave absolutely nothing in the tank</strong> on your final set. That last rep is where you're actually built.</div>
+        <div class="ob-mandate-items">
+          <div class="ob-mandate-item">
+            <div class="ob-mandate-bullet">I</div>
+            <div class="ob-mandate-txt">You will <strong>leave your ego at the door.</strong> The weight on the bar is irrelevant. The math is everything.</div>
+          </div>
+          <div class="ob-mandate-item">
+            <div class="ob-mandate-bullet">II</div>
+            <div class="ob-mandate-txt">You will be <strong>100% honest with the math.</strong> Unlogged calories are a lie you tell yourself — not the app.</div>
+          </div>
+          <div class="ob-mandate-item">
+            <div class="ob-mandate-bullet">III</div>
+            <div class="ob-mandate-txt">You will <strong>leave absolutely nothing in the tank</strong> on your final set. That last rep is where you're actually built.</div>
+          </div>
         </div>
       </div>
       <div class="ob-mandate-hold-wrap">
+        <!-- Hold button -->
         <div class="ob-hold-btn" id="obHoldBtn"
-          onpointerdown="startHold()" onpointerup="cancelHold()" onpointerleave="cancelHold()" oncontextmenu="return false">
+          onpointerdown="startHold()" onpointerup="cancelHold()" onpointerleave="cancelHold()"
+          ontouchstart="startHold()" ontouchend="cancelHold()" oncontextmenu="return false">
           <div class="ob-hold-fill" id="obHoldFill"></div>
           <span class="ob-hold-label" id="obHoldLabel">Hold to Accept the Mandate</span>
         </div>
+        <!-- Tap fallback for desktop / PC users -->
+        <button class="ob-skip" id="obMandateSkip" onclick="acceptMandateDirectly()" style="margin-top:8px;font-size:11px;color:var(--text-muted)">
+          On desktop? Tap here to accept instead
+        </button>
         <div class="ob-dots" id="obDots4"></div>
       </div>
     </div>
@@ -3321,6 +3352,7 @@ button{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
         <!-- Ignis hatch -->
         <span class="ob-ignis-hatch" id="obIgnisHatch">🔥</span>
         <div class="ob-ignis-ready" id="obIgnisReady">Your ecosystem is ready.</div>
+        <div class="ob-ignis-sub" id="obTdeeNote">Let's get to work.</div>
         <div class="ob-ignis-sub">Let's get to work.</div>
       </div>
       <div class="ob-footer">
@@ -4434,8 +4466,17 @@ function selectDetour(el,val){
   document.querySelectorAll('#obDetourOptions .ob-detour-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   obData.detour=val;
-  document.getElementById('obBtn2').disabled=false;
+  const wrap=document.getElementById('obDetourCustomWrap');
+  if(wrap)wrap.style.display=val==='other'?'block':'none';
+  document.getElementById('obBtn2').disabled=(val==='other');
   if(navigator.vibrate)navigator.vibrate(30);
+}
+function checkDetourNext(){
+  const custom=document.getElementById('obDetourCustom');
+  if(custom&&custom.value.trim().length>3){
+    obData.detourCustom=custom.value.trim();
+    document.getElementById('obBtn2').disabled=false;
+  }
 }
 
 // ── ANCHOR SELECTION (Step 3) ──
@@ -4443,10 +4484,13 @@ function selectAnchor(el,val){
   document.querySelectorAll('#obAnchorOptions .ob-anchor-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   obData.anchor=val;
-  document.getElementById('obBtn3').disabled=false;
-  // Slide in the photo prompt
+  const wrap=document.getElementById('obAnchorCustomWrap');
+  const lbl=document.getElementById('obAnchorCustomLbl');
+  if(wrap)wrap.style.display='block';
+  if(lbl)lbl.textContent=val==='custom'?'Write your personal anchor statement':'Add your own words (optional)';
   const prompt=document.getElementById('obPhotoPrompt');
   if(prompt)prompt.classList.add('show');
+  document.getElementById('obBtn3').disabled=false;
   if(navigator.vibrate)navigator.vibrate(30);
 }
 
@@ -4466,27 +4510,43 @@ function handleAnchorPhoto(input){
 // ── MANDATE HOLD BUTTON (Step 4) ──
 let holdTimer=null,holdInterval=null,holdProgress=0;
 
+function acceptMandateDirectly(){
+  // Desktop / PC fallback — single tap to accept
+  const btn=document.getElementById('obHoldBtn');
+  const fill=document.getElementById('obHoldFill');
+  const label=document.getElementById('obHoldLabel');
+  const skip=document.getElementById('obMandateSkip');
+  if(!btn||btn.classList.contains('accepted'))return;
+  fill.style.width='100%';
+  btn.classList.add('accepted');
+  label.textContent='✓ Mandate Accepted';
+  if(skip)skip.style.display='none';
+  if(navigator.vibrate)navigator.vibrate([40,20,80]);
+  setTimeout(()=>obNext(5),500);
+}
+
 function startHold(){
   const btn=document.getElementById('obHoldBtn');
   const fill=document.getElementById('obHoldFill');
   const label=document.getElementById('obHoldLabel');
-  if(btn.classList.contains('accepted'))return;
+  if(!btn||btn.classList.contains('accepted'))return;
+  if(holdInterval)return; // prevent double-fire
   holdProgress=0;
-  // Haptic pulse start
   if(navigator.vibrate)navigator.vibrate([20,30,20]);
   holdInterval=setInterval(()=>{
-    holdProgress+=2; // 2% per 40ms = 2 seconds total
+    holdProgress+=2.5; // 100% in ~1.6 seconds
     fill.style.width=holdProgress+'%';
     fill.style.transition='none';
     if(holdProgress>=100){
       clearInterval(holdInterval);
       holdInterval=null;
-      // Accepted
       btn.classList.add('accepted');
       fill.style.width='100%';
       label.textContent='✓ Mandate Accepted';
+      const skip=document.getElementById('obMandateSkip');
+      if(skip)skip.style.display='none';
       if(navigator.vibrate)navigator.vibrate([40,20,40,20,80]);
-      setTimeout(()=>obNext(5),600);
+      setTimeout(()=>obNext(5),500);
     }
   },40);
 }
@@ -4627,6 +4687,9 @@ function completeOnboarding(){
   localStorage.setItem('risn_goal',obData.goal);
   localStorage.setItem('risn_detour',obData.detour);
   localStorage.setItem('risn_anchor',obData.anchor);
+  if(obData.detourCustom)localStorage.setItem('risn_detour_custom',obData.detourCustom);
+  if(obData.anchorStatement)localStorage.setItem('risn_anchor_statement',obData.anchorStatement);
+  localStorage.setItem('risn_tdee',obData.tdee||0);
   localStorage.setItem('risn_calories',obData.calories);
   localStorage.setItem('risn_protein',obData.protein);
   localStorage.setItem('risn_carbs',obData.carbs);
